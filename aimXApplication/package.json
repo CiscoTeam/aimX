@@ -1,0 +1,22 @@
+{
+  "name": "app.js",
+  "version": "1.0.0",
+  "description": "Capstone project for SER401 IOT with Cisco",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bmf-Icarus/aimX.git"
+  },
+  "author": "Bryan Duarte, Vincent Goh, Chris Carpenter, Jaime Rabago",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bmf-Icarus/aimX/issues"
+  },
+  "homepage": "https://github.com/bmf-Icarus/aimX#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}

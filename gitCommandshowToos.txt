@@ -1,0 +1,54 @@
+git repo commands and how tools
+
+• when you enter the working directory of the repo /airUI checkout into your branch.
+	$git checkout branchName
+
+Branch names are your initials followed by your current task. For example Alian you are;
+	ag/guiMain
+Timo;
+co/guiCustomize
+Fatimah;
+fa/guiReports
+Bryan;
+bd/currentTask
+I did not create branches for Tyler or myself since I am not yet working on code for this sprint. When Tyler is back and working He or I can create a branch for him that follows the same pattern of, initials/currentTask.
+
+Once you are in your branch simply 
+	git checkout yourBranchName
+	git add
+	git, commit -m " "
+	and git push without worrying about killing anyone elses code. 
+*** Please do not push to origin master!!!
+if you are checkout into your branch at the time of a git add and git commit, just git push.
+
+* Branch handling:
+• to see the branches that are created run:
+	git branch -vva
+
+• to see recent information:
+	git log
+
+As it is we will be developing out of our own branches for one sprint at a time. As you can see if you do a 
+	git branch -vva 
+there is a branch named "sprint1". This will be our code reviewing collaborating branch. You will only push to this branch when you have working code. Keep this in mind... Working code is what we are looking for early on. We want to push working revisions of the code up to "sprint1" often to keep from pushing large amounts of code that will over time need to be merged. Second thing to remember is that with each new sprint the review node will be pushed to "master" and a new review branch will be created as "sprint2",, "sprint3"... Along with that we want to change branches often as well. With new sprint branches we should be creating new branches based on what we are currently working.
+
+• to create a new branch:
+	git checkout currentSprintBranch
+	git branch initials/currentTask
+	git checkout yourNewBranch
+
+• Prior to merge rebase your branch with the current sprint branch. This is only necessary for the graphing purposes. To do this rebase run the update command right below.
+
+• to update or "take in changes from the "sprint1" branch run:
+	git checkout yourBranch
+	git rebase sprint1
+this will update your working branch with the changes that anyone else has pushed to the "sprint1" branch.
+
+* This is also to be run before a merge to save the graphing format.
+• When doing a merge use this syntax:
+	git checkout sprintBranch
+	git merge --no-ff branceToBeMerged
+
+• to show log history:
+	git log branch name
+

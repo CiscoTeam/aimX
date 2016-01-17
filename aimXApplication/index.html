@@ -1,0 +1,40 @@
+
+
+<!DOCTYPE html>
+<html>
+<script src="node_modules/angular/angular.min.js"></script>
+
+<body>
+
+	<H1>aimX Indoor Automation and Monitoring</H1> 
+
+<div ng-app="aimXApp" ng-controller="signInPage">
+
+    <p> {{ result }} </p>
+
+</div>
+
+<script>
+	var app = angular.module('aimXApp', []);
+
+	app.controller('signInPage',
+		function ($scope, $filter) {
+
+			$scope.result = $filter('date')(new Date(), 'fullDate');
+		        }
+	    );
+</script>	
+
+<form ng-app="aimXApp" name="signInForm">
+	First Name: <input type="text" ng-modle="firstName">
+	Last name: <input type="text" ng-model="lastName">
+	Email:
+	<input type="email" name="emailAddress" <ng-model="text" Required>
+	
+	<span ng-show="signInForm.emailAddress.$error.email">Not a valid e-mail address</span>
+</form>
+</div>
+
+</body>
+    </html>
+
