@@ -2,39 +2,37 @@
 
 <!DOCTYPE html>
 <html>
+<head>aimX Indoor Monitoring and Automation
+</head>
 <script src="node_modules/angular/angular.min.js"></script>
+<script src="WebContent/SIGN_IN_FORM_CTRL.js"></script>
+<script src="node_modules/angular-password/angular-password.min.js"></script>
 
-<body>
+<body ng-app="aimXApp">
 
-	<H1>aimX Indoor Automation and Monitoring</H1> 
+	<div ng-controller="SIGN_IN_FORM_CTRL">
+		<p>{{ result }}</p>
 
-<div ng-app="aimXApp" ng-controller="signInPage">
+<form name="signInForm">
+		First Name: <input type="text" ng-model="firstName"> Last
+		name: <input type="text" ng-model="lastName"> Email: <input
+		type="email" name="emailAddress"
+		ng-model ="text" Required> <span
+			ng-show="signInForm.emailAddress.$error.email">Not a valid
+			e-mail address</span>
 
-    <p> {{ result }} </p>
+		</form>
 
-</div>
+	</div>
 
-<script>
-	var app = angular.module('aimXApp', []);
-
-	app.controller('signInPage',
-		function ($scope, $filter) {
+	<script>
+		var app=angular.module('aimXApp', ["ngPassword"]);
+		app.controller('SIGN_IN_FORM_CTRL', function($scope, $filter) {
 
 			$scope.result = $filter('date')(new Date(), 'fullDate');
-		        }
-	    );
-</script>	
-
-<form ng-app="aimXApp" name="signInForm">
-	First Name: <input type="text" ng-modle="firstName">
-	Last name: <input type="text" ng-model="lastName">
-	Email:
-	<input type="email" name="emailAddress" <ng-model="text" Required>
-	
-	<span ng-show="signInForm.emailAddress.$error.email">Not a valid e-mail address</span>
-</form>
-</div>
+		});
+	</script>
 
 </body>
-    </html>
+</html>
 
