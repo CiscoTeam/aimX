@@ -49,14 +49,14 @@
 	</div>
 
 	<script>
-		<script src="bootstrap/assets/js/ie10-viewport-bug-workaround.js">
-
 		var app=angular.module('aimXApp', ["ngPassword"]);
 		app.controller('SIGN_IN_FORM_CTRL', function($scope, $filter) {
 
 			$scope.result = $filter('date')(new Date(), 'fullDate');
 		});
 	</script>
+	
+	<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 
 </body>
 </html>
