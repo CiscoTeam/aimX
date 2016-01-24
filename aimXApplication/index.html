@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,20 +9,20 @@
     <meta name="author" content="">	
 	<link rel="icon" href="X.ico">
 
-	<title>Singin Page</title>
-	aimX Indoor Monitoring and Automation
+	<title>Sing-in Page</title>
 
 	<!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="bootstrap/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="signin.css" rel="stylesheet">
 
-    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="bootstrap/assets/js/ie-emulation-modes-warning.js"></script>
 </head>
+
 <script src="node_modules/angular/angular.min.js"></script>
 <script src="WebContent/SIGN_IN_FORM_CTRL.js"></script>
 <script src="node_modules/angular-password/angular-password.min.js"></script>
@@ -32,19 +32,25 @@
 	<div ng-controller="SIGN_IN_FORM_CTRL">
 		<p>{{ result }}</p>
 
-<form name="signInForm">
-		First Name: <input type="text" ng-model="firstName"> Last
-		name: <input type="text" ng-model="lastName"> Email: <input
-		type="email" name="emailAddress"
-		ng-model ="text" Required> <span
-			ng-show="signInForm.emailAddress.$error.email">Not a valid
-			e-mail address</span>
-
-		</form>
+	<form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
 
 	</div>
 
 	<script>
+		<script src="bootstrap/assets/js/ie10-viewport-bug-workaround.js">
+
 		var app=angular.module('aimXApp', ["ngPassword"]);
 		app.controller('SIGN_IN_FORM_CTRL', function($scope, $filter) {
 
