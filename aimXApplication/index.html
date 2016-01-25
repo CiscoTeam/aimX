@@ -1,19 +1,29 @@
-
-
 <!DOCTYPE html>
 <html>
-<head>aimX Indoor Monitoring and Automation
+<head>
+	<title>aimX</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
 </head>
+
 <script src="node_modules/angular/angular.min.js"></script>
 <script src="WebContent/SIGN_IN_FORM_CTRL.js"></script>
 <script src="node_modules/angular-password/angular-password.min.js"></script>
 
 <body ng-app="aimXApp">
-
+	<div id="header">
+		<ul class="navigation">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="FloorPlan.html">Floor Plan</a></li>
+			<li><a href="Devieces.html">Devices</a></li>
+			<li><a href="QuickControls.html">Quick Controls</a></li>
+		</ul>
+		<div class="colorBar"></div>
+	</div>
+	
 	<div ng-controller="SIGN_IN_FORM_CTRL">
 		<p>{{ result }}</p>
 
-<form name="signInForm">
+		<form name="signInForm">
 		First Name: <input type="text" ng-model="firstName"> Last
 		name: <input type="text" ng-model="lastName"> Email: <input
 		type="email" name="emailAddress"
