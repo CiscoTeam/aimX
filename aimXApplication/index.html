@@ -50,8 +50,7 @@
 
 	<script>
 		var app=angular.module('aimXApp', ["ngPassword"]);
-		app.controller('SIGN_IN_FORM_CTRL', function($scope, $filter) {
-
+        
 			$scope.result = $filter('date')(new Date(), 'fullDate');
 		});
 	</script>
