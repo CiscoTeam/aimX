@@ -32,18 +32,16 @@
 			ng-show="signInForm.emailAddress.$error.email">Not a valid
 			e-mail address</span>
 
-		</form>
+        </form>
 
-	</div>
+    </div>
 
-	<script>
-		var app=angular.module('aimXApp', ["ngPassword"]);
-		app.controller('SIGN_IN_FORM_CTRL', function($scope, $filter) {
-
-			$scope.result = $filter('date')(new Date(), 'fullDate');
-		});
-	</script>
+    <script>
+        var app=angular.module('aimXApp', ["ngPassword"]);
+        app.controller('SIGN_IN_FORM_CTRL', function($scope, $filter) {
+            $scope.result = $filter('date')(new Date(), 'fullDate');
+        });
+    </script>
 
 </body>
 </html>
-
