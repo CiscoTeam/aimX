@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bmf-Icarus/aimX.git"
+    "url": "git+https://github.com/CiscoTeam/aimX.git"
   },
   "author": "Bryan Duarte, Vincent Goh, Chris Carpenter, Jaime Rabago",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bmf-Icarus/aimX/issues"
+    "url": "https://github.com/CiscoTeam/aimX/issues"
   },
-  "homepage": "https://github.com/bmf-Icarus/aimX#readme",
+  "homepage": "https://github.com/CiscoTeam/aimX#readme",
   "dependencies": {
     "express": "^4.13.3"
   }

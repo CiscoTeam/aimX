@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+h2 {
+	text-align: center;
+	font-size: 40px;
+	text-decoration: underline;
+}
+#devices {
+	//color: #0094FF;
+	//text-align: center;
+	align: left;
+	
+	background-color: transparent;
+}
+#devices li{
+	color: #0094FF;
+}
+
+#floorPlan {
+	padding: 5px 5px;
+	background-color: gray;
+	font-size: 40px;
+}
+
