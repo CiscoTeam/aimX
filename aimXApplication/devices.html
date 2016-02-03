@@ -1,9 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>aimX</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->	
+	<title>Home Page</title>
 	<link rel="stylesheet" type="text/css" href="style.css" />
-	<link rel="stylesheet" type="text/css" href="devices-style.css" />
+	<link rel="stylesheet" type="text/css" href="home-style.css" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap-master/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="bootstrap-master/docs/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="home-style.css" rel="stylesheet">
+
+    <script src="bootstrap-master/docs/assets/js/ie-emulation-modes-warning.js"></script>
+
+</head>
 </head>
 
 <body ng-app="aimXApp">
@@ -18,8 +35,25 @@
 	</div>
 	
 	<div>
-		<h2>Devices<h2>
+		<h1>Devices<h1>
 	</div>
+
+	<div class="leftPanel">
+        <div class="col-lg-2">
+          <p><a class="btn btn-primary" href="#" role="button">New Device</a></p>
+        </div>
+
+        <div class="col-lg-2">  
+          <p><a class="btn btn-primary" href="#" role="button">Add Device</a></p>
+       </div>
+    </div>
+
+    <div class="rightPanel">
+    	<div class="col-lg-8">
+    		<div class="well">Lights
+    		</div>
+    	</div>
+    </div>
 
 </body>
 </html>
