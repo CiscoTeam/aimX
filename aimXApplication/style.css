@@ -33,3 +33,6 @@ div.colorBar {
     background-color: #0094FF;
 	height: 5px;
 }
+
+a.navbar-brand:link {color: white;}    /* unvisited link */
+a.navbar-brand:visited {color: white;}    /* visited link */
