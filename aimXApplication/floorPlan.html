@@ -41,21 +41,45 @@
 		</div>
 	</nav>
 	
-	<div id="floorPlan", class="col-sm-9">
-	    <h2>Floor Plan</h2>
-		<canvas></canvas>
+	<div class="container">
+		<h2>Floor Plan</h2>
 	</div>
 	
-	<div id="devices", class="col-sm-3">
-		<h2>Devices</h2>
-		<ul>
-			<li><a href="#">Device1</a></li>
-			<ul>
-			    <li><a href="#">Device2</a></li>
-	        </ul>
-			<li><a href="#">Device3</a></li>
-			<li><a href="#">Device4</a></li>
-		</ul>
+	<div class="floorPlan-box col-sm-8">
+		<h3>Floor View</h3>
+		<div class="floorPlan-content">
+		</div>
+	</div>
+	<div class="col-sm-1"></div>
+	<div class="device-box col-sm-3">
+		<h3>Devices</h3>
+		<button type="button" class="btn btn-primary">New Device</button>
+		<button type="button" class="btn btn-primary">New Area</button>
+		<div class="device-content">
+			
+			<ul class="nav nav-list">
+				<li><label class="tree-toggler nav-header">Property</label>
+					<ul class="nav nav-list tree">
+                        <li><a href="#">Device 1</a></li>
+                        <li><a href="#">Device 2</a></li>
+                        <li><label class="tree-toggle nav-header">House</label>
+                            <ul class="nav nav-list tree">
+                                <li><a href="#">Device 3</a></li>
+                                <li><a href="#">Device 4</a></li>
+                                <li><label class="tree-toggle nav-header">Kitchen</label>
+                                    <ul class="nav nav-list tree">
+                                        <li><a href="#">Device 5</a></li>
+                                        <li><a href="#">Device 6</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+				</li>
+			</ul>
+		</div>
+		<button type="button" class="btn btn-primary">Remove</button>
+		<button type="button" class="btn btn-primary">Modify</button>
 	</div >
 	
 	
