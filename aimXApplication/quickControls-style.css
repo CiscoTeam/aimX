@@ -4,6 +4,7 @@ div.page-content
 {
 	padding: 20px 20px;
 	background-color: #222222;
+	border-radius: 10px;
 }
 
 div.tab-content
