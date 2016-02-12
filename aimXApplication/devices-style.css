@@ -1,2 +1,7 @@
 @charset "UTF-8";
 
+.devices-title {
+	color: #0094FF;
+	text-align: center;
+	background-color: transparent;
+}
