@@ -2,9 +2,9 @@
 
 div.page-content
 {
-	padding: 20px 20px;
-	background-color: #222222;
-	border-radius: 10px;
+	//padding: 20px 20px;
+	//background-color: #222222;
+	//border-radius: 10px;
 }
 
 div.tab-content
@@ -20,17 +20,17 @@ div.tab-content
 	margin: 30px;
 	font-size: 40px;
 }
-a.navbar-brand:link {color: white;}    /* unvisited link */
-a.navbar-brand:visited {color: white;}    /* visited link */
+//a.navbar-brand:link {color: white;}    /* unvisited link */
+//a.navbar-brand:visited {color: white;}    /* visited link */
 
 .nav-tabs
 {
-	background-color: #111111;
+	background-color: #ffffff;
 }
 
 .nav-tabs > li > a
 {
-	color: white;
+	color: gray;
 }
 
 .nav-tabs > li > a:hover

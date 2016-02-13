@@ -2,34 +2,37 @@
 
 h3
 {
-	color: white !important;
+	//color: white !important;
 }
 div.device-box
 {
-	background-color: #222222;
-	padding-bottom: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-radius: 10px;
+	//background-color: #222222;
+	//padding-bottom: 10px;
+	//padding-left: 10px;
+	//padding-right: 10px;
+	//border-radius: 10px;
+	
 }
 div.device-content
 {
 	overflow-y: scroll; 
-	overflow-x: hidden;
+	overflow-x: scroll;
 	height: 500px;
 	
 	margin: 10px 5px;
 	padding: 10px 5px;
-	background-color: #ffffff;
+	background-color: #eeeeee;
 }
 
 div.floorPlan-box
 {
-	background-color: #222222;
-	padding-bottom: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-radius: 10px;
+	//background-color: #222222;
+	//padding-bottom: 10px;
+	//padding-left: 10px;
+	//padding-right: 10px;
+	//border-radius: 10px;
+	//padding: 0;
+	//margin: 0px;
 }
 div.floorPlan-content
 {
@@ -37,7 +40,7 @@ div.floorPlan-content
 	overflow-x: scroll;
 	
 	//margin: 10px 5px;
-	padding: 5px 5px;
+	//padding: 5px 5px;
 	background-color: #777777;
 	height: 500px;
 }
