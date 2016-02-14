@@ -1,38 +1,48 @@
-
-
 <!DOCTYPE html>
 <html>
-<head>aimX Indoor Monitoring and Automation
+<head>
+<meta charset="utf-8" />
+<title>aimX</title>
+
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link href="/WebContent/app/app-content/app.css" rel="stylesheet" />
 </head>
-<script src="node_modules/angular/angular.min.js"></script>
-<script src="WebContent/SIGN_IN_FORM_CTRL.js"></script>
-<script src="node_modules/angular-password/angular-password.min.js"></script>
+<body class="container">
+	<!-- header -->
+	<header>
+		<h1>aimX Automation Integration & Monitoring System</h1>
 
-<body ng-app="aimXApp">
+		<ul class="nav nav-tabs">
+			<li ng-class="{active: activeTab === 'home'}"><a ui-sref="home">Home</a></li>
+			<li ng-class="{active: activeTab === 'account'}"><a
+				ui-sref="account">Account</a></li>
+			<li><a href="/login" target="_self">Logout</a></li>
+		</ul>
+		<div class="flash-message" ng-if="flash">
+			<div class="{{'alert alert-' + flash.type}}" ng-bind="flash.message"></div>
+		</div>
+	</header>
 
-	<div ng-controller="SIGN_IN_FORM_CTRL">
-		<p>{{ result }}</p>
+	<!-- main -->
+	<main ui-view></main>
 
-<form name="signInForm">
-		First Name: <input type="text" ng-model="firstName"> Last
-		name: <input type="text" ng-model="lastName"> Email: <input
-		type="email" name="emailAddress"
-		ng-model ="text" Required> <span
-			ng-show="signInForm.emailAddress.$error.email">Not a valid
-			e-mail address</span>
+	<!-- footer -->
+	<footer></footer>
 
-		</form>
+	<!-- external scripts -->
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
 
-	</div>
-
-	<script>
-		var app=angular.module('aimXApp', ["ngPassword"]);
-		app.controller('SIGN_IN_FORM_CTRL', function($scope, $filter) {
-
-			$scope.result = $filter('date')(new Date(), 'fullDate');
-		});
-	</script>
-
+	<!-- application scripts -->
+	<script src="node_modules/angular/angular.min.js"></script>
+	<script src="WebContent/app/app.js"></script>
+	<script src="WebContent/app/app-services/user.service.js"></script>
+	<script src="WebContent/app/app-services/flash.service.js"></script>
+	<script src="WebContent/app/home/index.controller.js"></script>
+	<script src="/WebContent/app/account/index.controller.js"></script>
 </body>
 </html>
-

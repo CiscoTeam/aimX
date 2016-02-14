@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->	
+	<title>Devices</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link rel="stylesheet" type="text/css" href="devices-style.css" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap-master/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="bootstrap-master/docs/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="bootstrap-master/dist/js/bootstrap.min.js"></script>
+
+    <script src="bootstrap-master/docs/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <script src="devices.js"></script>
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+</head>
+
+<body ng-app="aimXApp">
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span> 
+				</button>
+				<a class="navbar-brand" href="#">aimX</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="home.html">Home</a></li>
+					<li><a href="FloorPlan.html">Floor Plan</a></li>
+					<li class="active"><a href="Devices.html">Devices</a></li>
+					<li><a href="QuickControls.html">Quick Controls</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+	<div class="devices-title">
+		<h1>Devices</h1>
+	</div>
+
+	<div class="leftPanel">
+		<div class="col-lg-1">
+          <p><a class="btn btn-primary" h*ref="#" role="button">New Device</a></p>
+        </div>
+		
+		<div class="col-lg-1"></div>
+
+        <div class="col-lg-1">  
+          <p><a class="btn btn-primary" href="#" role="button">Add Device</a></p>
+       </div>
+    </div>
+
+    <div class="rightPanel">
+    	<div class="col-lg-9">
+    		<div class="well">Lights
+    		</div>
+    	</div>
+    </div>
+
+	<div class="col-lg-3">
+	    <div class="well">
+	        <div class="">
+	            <ul class="nav">
+	                <li>
+	                    <label class="tree-toggle nav-header" label-default="">Interior</label>
+	                    <ul class="nav tree">
+	                        <li><a class="" href="#">Device A</a></li>
+	                        <li><a class="" href="#">Device B</a></li>
+
+	                        <li>
+	                            <label class="tree-toggle nav-header" label-default="">-Living Room</label>
+	                            <ul class="nav tree">
+	                                <li><a class="" href="#">Device 1A</a> </li>
+	                                <li><a class="" href="#">Device 2A</a></li>
+	                                
+	                                <li>
+	                                    <label class="tree-toggle nav-header" label-default="">-Kitchen</label>
+	                                    <ul class="nav tree">
+	                                        <li><a class="" href="#">Device 1B</a></li>
+	                                        <li><a class="" href="#">Device 2B</a></li>
+	                                    </ul>
+	                                </li>
+	                            </ul>
+	                        </li>
+	                    </ul>
+	                </li>
+	            </ul>
+	        </div>
+	    </div>
+	</div>
+
+
+
+</body>
+</html>

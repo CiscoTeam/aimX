@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+div.page-content
+{
+    text-align:center;
+}
+
+.btn 
+{
+	//height: 200px;
+	width: 400px;
+	margin: 30px;
+	font-size: 40px;
+	padding: 50px;
+}
