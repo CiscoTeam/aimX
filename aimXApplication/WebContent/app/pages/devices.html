@@ -27,7 +27,7 @@
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
-					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#">aimX</a>
 			</div>
@@ -46,62 +46,54 @@
 		</div>
 	</nav>
 	
-	<div class="devices-title">
+	<div class="container">
 		<h1>Devices</h1>
 	</div>
 
-	<div class="leftPanel">
-		<div class="col-lg-1">
-          <p><a class="btn btn-primary" h*ref="#" role="button">New Device</a></p>
-        </div>
-		
-		<div class="col-lg-1"></div>
+	<div class="container">
+		<div class="leftPanel col-sm-4 container page-content">
+			<button type="button" class="btn btn-primary">New Device</button>
+			<button type="button" class="btn btn-primary">Add Device</button>
+		    
+		    <div class="devicePanel">
+				<div class="well">
+		            <ul class="nav">
+		                <li>
+		                    <label class="tree-toggle nav-header" label-default="">Interior</label>
+		                    <ul class="nav tree">
+		                        <li><a class="" href="#">Device A</a></li>
+		                        <li><a class="" href="#">Device B</a></li>
 
-        <div class="col-lg-1">  
-          <p><a class="btn btn-primary" href="#" role="button">Add Device</a></p>
-       </div>
-    </div>
+		                        <li>
+		                            <label class="tree-toggle nav-header" label-default="">-Living Room</label>
+		                            <ul class="nav tree">
+		                                <li><a class="" href="#">Device 1A</a> </li>
+		                                <li><a class="" href="#">Device 2A</a></li>
+		                                
+		                                <li>
+		                                    <label class="tree-toggle nav-header" label-default="">-Kitchen</label>
+		                                    <ul class="nav tree">
+		                                        <li><a class="" href="#">Device 1B</a></li>
+		                                        <li><a class="" href="#">Device 2B</a></li>
+		                                    </ul>
+		                                </li>
+		                            </ul>
+		                        </li>
+		                    </ul>
+		                </li>
+		            </ul>
+			    </div>
+			</div>
+		</div>
 
-    <div class="rightPanel">
-    	<div class="col-lg-9">
-    		<div class="well">Lights
-    		</div>
-    	</div>
-    </div>
-
-	<div class="col-lg-3">
-	    <div class="well">
-	        <div class="">
-	            <ul class="nav">
-	                <li>
-	                    <label class="tree-toggle nav-header" label-default="">Interior</label>
-	                    <ul class="nav tree">
-	                        <li><a class="" href="#">Device A</a></li>
-	                        <li><a class="" href="#">Device B</a></li>
-
-	                        <li>
-	                            <label class="tree-toggle nav-header" label-default="">-Living Room</label>
-	                            <ul class="nav tree">
-	                                <li><a class="" href="#">Device 1A</a> </li>
-	                                <li><a class="" href="#">Device 2A</a></li>
-	                                
-	                                <li>
-	                                    <label class="tree-toggle nav-header" label-default="">-Kitchen</label>
-	                                    <ul class="nav tree">
-	                                        <li><a class="" href="#">Device 1B</a></li>
-	                                        <li><a class="" href="#">Device 2B</a></li>
-	                                    </ul>
-	                                </li>
-	                            </ul>
-	                        </li>
-	                    </ul>
-	                </li>
-	            </ul>
-	        </div>
-	    </div>
+		<div class="rightPanel col-sm-8 page content">
+	    	<div class="well">Lights</div>
+		</div>
 	</div>
 
-
+	<footer class="footer">
+		<p>Team Cisco 2016 ASU Senior Capstone Project</p>
+	</footer>
 
 </body>
 </html>
