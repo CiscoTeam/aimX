@@ -1,12 +1,12 @@
 @charset "UTF-8";
 
-.devices-title {
-	color: #0094FF;
-	text-align: center;
-	background-color: transparent;
+
+.btn {
+	margin: 20px;
 }
 
-.leftPanel {
+.devicePanel {
+	margin-top: 20px;
 }
 
 /* 2nd level */
