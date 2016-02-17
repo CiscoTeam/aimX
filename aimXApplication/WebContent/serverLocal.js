@@ -21,6 +21,15 @@ app.use('/register', require('./controllers/register.controller'));
 app.use('/app', require('./controllers/app.controller'));
 app.use('/api/users', require('./controllers/api/users.controller'));
 
+app.use(express.static(__dirname + '/app'));
+app.use(express.static(__dirname + '/frameworks'));
+app.use(express.static(__dirname + '/app/pages/styles'));
+
+app.get('/home',function(req,res){res.sendFile(__dirname + '/app/pages/home.html');});
+app.get('/floorPlan',function(req,res){res.sendFile(__dirname + '/app/pages/floorPlan.html');});
+app.get('/devices',function(req,res){res.sendFile(__dirname + '/app/pages/devices.html');});
+app.get('/quickControls',function(req,res){res.sendFile(__dirname + '/app/pages/quickControls.html');});
+
 // make '/app' default route
 app.get('/', function (req, res) {
     return res.redirect('/app');
