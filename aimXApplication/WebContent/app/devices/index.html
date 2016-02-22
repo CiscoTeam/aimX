@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Devices</title>
+
+	<!-- Bootstrap core CSS -->
+    <link href="/bootstrapCSS" rel="stylesheet">
+    <link href="/bootstrapCSSIE10" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<script src="/bootstrapJS"></script>
+    <script src="/bootstrapJSIE10"></script>
+	
+	<script src="devices.js"></script>
+	
+	<!-- stylesheets (last so they take priority) -->
+	<link rel="stylesheet" type="text/css" href="../style.css" />
+	<link rel="stylesheet" type="text/css" href="devices-style.css" />
+</head>
+
+<body ng-app="aimXApp">
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">aimX</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="../home">Home</a></li>
+					<li><a href="../floorPlan">Floor Plan</a></li>
+					<li class="active"><a href="../devices">Devices</a></li>
+					<li><a href="../quickControls">Quick Controls</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/login"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+	<div class="container">
+		<h1>Devices</h1>
+	</div>
+
+	<div class="container">
+		<div class="leftPanel col-sm-4 container page-content">
+			<button type="button" class="btn btn-primary">New Device</button>
+			<button type="button" class="btn btn-primary">Add Device</button>
+		    
+		    <div class="devicePanel">
+				<div class="well">
+		            <ul class="nav">
+		                <li>
+		                    <label class="tree-toggle nav-header" label-default="">Interior</label>
+		                    <ul class="nav tree">
+		                        <li><a class="" href="#">Device A</a></li>
+		                        <li><a class="" href="#">Device B</a></li>
+
+		                        <li>
+		                            <label class="tree-toggle nav-header" label-default="">-Living Room</label>
+		                            <ul class="nav tree">
+		                                <li><a class="" href="#">Device 1A</a> </li>
+		                                <li><a class="" href="#">Device 2A</a></li>
+		                                
+		                                <li>
+		                                    <label class="tree-toggle nav-header" label-default="">-Kitchen</label>
+		                                    <ul class="nav tree">
+		                                        <li><a class="" href="#">Device 1B</a></li>
+		                                        <li><a class="" href="#">Device 2B</a></li>
+		                                    </ul>
+		                                </li>
+		                            </ul>
+		                        </li>
+		                    </ul>
+		                </li>
+		            </ul>
+			    </div>
+			</div>
+		</div>
+
+		<div class="rightPanel col-sm-8 page content">
+	    	<div class="well">Lights</div>
+		</div>
+	</div>
+
+	<footer class="footer">
+		<p>Team Cisco 2016 ASU Senior Capstone Project</p>
+	</footer>
+
+</body>
+</html>

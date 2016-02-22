@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.devices-title {
+	color: #0094FF;
+	text-align: center;
+	background-color: transparent;
+}
+
+.leftPanel {
+}
+
+/* 2nd level */
+.tree > li > label {
+  padding:10px 15px;
+}
+
+/* 3rd level */
+.tree > li > ul > li > a {
+  color:#cc0000;
+  font-size:10pt;
+  margin-left:15px;
+}
