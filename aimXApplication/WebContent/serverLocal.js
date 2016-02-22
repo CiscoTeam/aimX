@@ -20,22 +20,22 @@ app.use('/login', require('./controllers/login.controller'));
 app.use('/register', require('./controllers/register.controller'));
 app.use('/app', require('./controllers/app.controller'));
 app.use('/api/users', require('./controllers/api/users.controller'));
+app.use('/app/home', require('./controllers/authenticate.controller'));
 
-app.use(express.static(__dirname + '/app'));
 app.use(express.static(__dirname + '/frameworks'));
-app.use(express.static(__dirname + '/app/pages/styles'));
+app.use('/fonts/', express.static(__dirname + '/frameworks/bootstrap-master/fonts'));
 
-app.get('/home',function(req,res){res.sendFile(__dirname + '/app/pages/home.html');});
-app.get('/floorPlan',function(req,res){res.sendFile(__dirname + '/app/pages/floorPlan.html');});
-app.get('/devices',function(req,res){res.sendFile(__dirname + '/app/pages/devices.html');});
-app.get('/quickControls',function(req,res){res.sendFile(__dirname + '/app/pages/quickControls.html');});
+app.get('/bootstrapCSS',function(req,res){res.sendFile(__dirname + '/frameworks/bootstrap-master/dist/css/bootstrap.min.css');});
+app.get('/bootstrapCSSIE10',function(req,res){res.sendFile(__dirname + '/frameworks/bootstrap-master/docs/assets/css/ie10-viewport-bug-workaround.css');});
+app.get('/bootstrapJS',function(req,res){res.sendFile(__dirname + '/frameworks/bootstrap-master/dist/js/bootstrap.min.js');});
+app.get('/bootstrapJSIE10',function(req,res){res.sendFile(__dirname + '/frameworks/bootstrap-master/docs/assets/js/ie-emulation-modes-warning.js');});
 
 // make '/app' default route
 app.get('/', function (req, res) {
-    return res.redirect('/app');
+    return res.redirect('/app/home');
 });
 
-// start server52.91.31.112,
-var server = app.listen( 3000, function () {
+// start server
+var server = app.listen(3000, function () {
     console.log('Server listening at http://' + server.address().address + ':' + server.address().port);
-});
+})

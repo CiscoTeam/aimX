@@ -20,10 +20,19 @@ app.use('/login', require('./controllers/login.controller'));
 app.use('/register', require('./controllers/register.controller'));
 app.use('/app', require('./controllers/app.controller'));
 app.use('/api/users', require('./controllers/api/users.controller'));
+app.use('/app/home', require('./controllers/authenticate.controller'));
+
+app.use(express.static(__dirname + '/frameworks'));
+app.use('/fonts/', express.static(__dirname + '/frameworks/bootstrap-master/fonts'));
+
+app.get('/bootstrapCSS',function(req,res){res.sendFile(__dirname + '/frameworks/bootstrap-master/dist/css/bootstrap.min.css');});
+app.get('/bootstrapCSSIE10',function(req,res){res.sendFile(__dirname + '/frameworks/bootstrap-master/docs/assets/css/ie10-viewport-bug-workaround.css');});
+app.get('/bootstrapJS',function(req,res){res.sendFile(__dirname + '/frameworks/bootstrap-master/dist/js/bootstrap.min.js');});
+app.get('/bootstrapJSIE10',function(req,res){res.sendFile(__dirname + '/frameworks/bootstrap-master/docs/assets/js/ie-emulation-modes-warning.js');});
 
 // make '/app' default route
 app.get('/', function (req, res) {
-    return res.redirect('/app');
+    return res.redirect('/app/home');
 });
 
 // start server

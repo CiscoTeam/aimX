@@ -4,13 +4,15 @@
 	<title>Quick Controls</title>
 	
 	<!-- Bootstrap core CSS -->
-    <link href="bootstrap-master/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="bootstrap-master/docs/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="/bootstrapCSS" rel="stylesheet">
+    <link href="/bootstrapCSSIE10" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	<script src="bootstrap-master/dist/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<script src="/bootstrapJS"></script>
+    <script src="/bootstrapJSIE10"></script>
+	
 	<!-- stylesheets (last so they take priority) -->
-	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link rel="stylesheet" type="text/css" href="../style.css" />
 	<link rel="stylesheet" type="text/css" href="quickControls-style.css" />
 </head>
 
@@ -21,20 +23,20 @@
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
-					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#">aimX</a>
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li><a href="/home">Home</a></li>
-					<li><a href="/floorPlan">Floor Plan</a></li>
-					<li><a href="/devices">Devices</a></li>
-					<li class="active"><a href="/quickControls">Quick Controls</a></li>
+					<li><a href="../home">Home</a></li>
+					<li><a href="../floorPlan">Floor Plan</a></li>
+					<li><a href="../devices">Devices</a></li>
+					<li class="active"><a href="../quickControls">Quick Controls</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-					<li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+					
+					<li><a href="/login"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</ul>
 			</div>
 		</div>
