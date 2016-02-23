@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>aimX</title>
+
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link href="/WebContent/app/app-content/app.css" rel="stylesheet" />
+</head>
+<body class="container">
+	<!-- header -->
+	<header>
+		<h1>aimX Automation Integration & Monitoring System</h1>
+
+		<ul class="nav nav-tabs">
+			<li ng-class="{active: activeTab === 'home'}"><a ui-sref="home">Home</a></li>
+			<li ng-class="{active: activeTab === 'account'}"><a
+				ui-sref="account">Account</a></li>
+			<li><a href="/login" target="_self">Logout</a></li>
+		</ul>
+		<div class="flash-message" ng-if="flash">
+			<div class="{{'alert alert-' + flash.type}}" ng-bind="flash.message"></div>
+		</div>
+	</header>
+
+	<!-- main -->
+	<main ui-view></main>
+
+	<!-- footer -->
+	<footer></footer>
+
+	<!-- external scripts -->
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+
+	<!-- application scripts -->
+	<script src="node_modules/angular/angular.min.js"></script>
+	<script src="WebContent/app/app.js"></script>
+	<script src="WebContent/app/app-services/user.service.js"></script>
+	<script src="WebContent/app/app-services/flash.service.js"></script>
+	<script src="WebContent/app/home/index.controller.js"></script>
+	<script src="/WebContent/app/account/index.controller.js"></script>
+</body>
+</html>
