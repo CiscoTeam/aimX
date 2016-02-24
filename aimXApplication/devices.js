@@ -17,3 +17,15 @@ $(document).ready(function () {
 		$(this).parent().children('ul.tree').toggle(300);
 	});
 });
+
+  $(function() {
+    $( "#sortable" ).sortable({
+      revert: true
+    });
+    $( "#draggable" ).draggable({
+      connectToSortable: "#sortable",
+      helper: "clone",
+      revert: "invalid"
+    });
+    $( "ul, li" ).disableSelection();
+  });
