@@ -1,5 +1,5 @@
 ﻿{
-    "name":"aimX Application",
+    "name":"aimXApplication",
     "description": "Indoor Automation, Integration, & Monitoring System",
     "dependencies": {
         "express": "^4.13.0",
