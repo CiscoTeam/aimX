@@ -40,8 +40,6 @@ var marker2 = L.marker([155.5, -0.09], {draggable: true}).addTo(map).bindPopup("
 var marker3 = L.marker([256.5, -0.09], {draggable: true}).addTo(map).bindPopup("<b>README</b><br>I am a popup.");
 
 
-
-
 //marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
 //marker1.bindPopup("<b>Hi</b><br>I am a popup.").openPopup();
 //marker2.bindPopup("<b>Yo</b><br>I am a popup.").openPopup();
