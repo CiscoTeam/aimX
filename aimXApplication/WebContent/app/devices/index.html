@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->	
 	<title>Devices</title>
-
+	
 	<!-- Bootstrap core CSS -->
     <link href="/bootstrapCSS" rel="stylesheet">
     <link href="/bootstrapCSSIE10" rel="stylesheet">
@@ -11,11 +12,13 @@
 	<script src="/bootstrapJS"></script>
     <script src="/bootstrapJSIE10"></script>
 	
-	<script src="devices.js"></script>
-	
 	<!-- stylesheets (last so they take priority) -->
 	<link rel="stylesheet" type="text/css" href="../style.css" />
 	<link rel="stylesheet" type="text/css" href="devices-style.css" />
+	
+  	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <script src="devices.js"></script>
 </head>
 
 <body ng-app="aimXApp">
@@ -25,7 +28,7 @@
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
+					<span class="icon-bar"></span> 
 				</button>
 				<a class="navbar-brand" href="#">aimX</a>
 			</div>
@@ -49,42 +52,47 @@
 
 	<div class="container">
 		<div class="leftPanel col-sm-4 container page-content">
-			<button type="button" class="btn btn-primary">New Device</button>
-			<button type="button" class="btn btn-primary">Add Device</button>
-		    
-		    <div class="devicePanel">
-				<div class="well">
-		            <ul class="nav">
-		                <li>
-		                    <label class="tree-toggle nav-header" label-default="">Interior</label>
-		                    <ul class="nav tree">
-		                        <li><a class="" href="#">Device A</a></li>
-		                        <li><a class="" href="#">Device B</a></li>
+			<div class="deviceButtons">
+				<button type="button" class="btn btn-primary">New Device</button>
+				<button type="button" class="btn btn-primary">Add Device</button>
+		    </div>
 
-		                        <li>
-		                            <label class="tree-toggle nav-header" label-default="">-Living Room</label>
-		                            <ul class="nav tree">
-		                                <li><a class="" href="#">Device 1A</a> </li>
-		                                <li><a class="" href="#">Device 2A</a></li>
-		                                
-		                                <li>
-		                                    <label class="tree-toggle nav-header" label-default="">-Kitchen</label>
-		                                    <ul class="nav tree">
-		                                        <li><a class="" href="#">Device 1B</a></li>
-		                                        <li><a class="" href="#">Device 2B</a></li>
-		                                    </ul>
-		                                </li>
-		                            </ul>
-		                        </li>
-		                    </ul>
-		                </li>
-		            </ul>
-			    </div>
+		    <div class="devicePanel">
+				 <!--<div id="tree" draggable="true" ondragstart="drag(event)"></div>-->
+				 <div class="well" style="padding: 8px 0;">
+				    <div style="overflow-y: scroll; overflow-x: hidden; height: 500px;">
+				        <ul class="nav nav-list" id="sortable">
+				            <li><label class="tree-toggler nav-header">Interior</label>
+				                <ul class="nav nav-list tree">
+				                    <li><label class="tree-toggler nav-header">Living Room</label>
+				                        <ul class="nav nav-list tree">
+				                            <li><a href="#">Television</a></li>
+				                            <li><a href="#">Fan</a></li>
+				                            <li><label class="tree-toggler nav-header">Living Room Lights </label>
+				                                <ul class="nav nav-list tree">
+				                                    <li><a href="#">Chandelier</a></li>
+				                                    <li><a href="#">Ambient Light</a></li>
+				                                </ul>
+				                            </li>
+				                        </ul>
+				                    </li>
+				                </ul>
+				            </li>
+				            <li class="divider"></li>
+				            <li><label class="tree-toggler nav-header">Kitchen</label>
+				                <ul class="nav nav-list tree">
+				                    <li><a href="#">Kitchen Light 1</a></li>
+				                    <li><a href="#">Kitchen Light 2</a></li>
+				                </ul>
+				            </li>
+				        </ul>
+				    </div>
+				</div>
 			</div>
 		</div>
 
 		<div class="rightPanel col-sm-8 page content">
-	    	<div class="well">Lights</div>
+	    	<div id="target" class="well" ondrop="drop(event)" ondragover="allowDrop(event)">Lights</div>
 		</div>
 	</div>
 
