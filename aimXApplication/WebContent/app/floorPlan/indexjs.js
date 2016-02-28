@@ -20,7 +20,7 @@ var greenIcon = L.icon({
     //shadowSize:   [50, 64], // size of the shadow
     iconAnchor:   [10, 34], // point of the icon which will correspond to marker's location
     shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    popupAnchor:  [0, -35] // point from which the popup should open relative to the iconAnchor
 });
 
 var green2Icon = L.icon({
@@ -31,13 +31,16 @@ var green2Icon = L.icon({
     //shadowSize:   [50, 64], // size of the shadow
     iconAnchor:   [10, 34], // point of the icon which will correspond to marker's location
     shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    popupAnchor:  [0, -35] // point from which the popup should open relative to the iconAnchor
 });
 
-var marker = L.marker([-20, -20], {icon: greenIcon}).addTo(map).bindPopup("<b>Hello world!</b><br>I am a popup.");
-var marker1 = L.marker([54.5, -0.09]).addTo(map).bindPopup("<b>Hi</b><br>I am a popup.");
-var marker2 = L.marker([155.5, -0.09]).addTo(map).bindPopup("<b>Yo</b><br>I am a popup.");
-var marker3 = L.marker([256.5, -0.09]).addTo(map).bindPopup("<b>README</b><br>I am a popup.");
+var marker = L.marker([-20, -20],{draggable: true,icon: greenIcon,title: "Light"},{icon: greenIcon}).addTo(map).bindPopup("<b>Lights Off</b><br>The lights are off right now");
+var marker1 = L.marker([54.5, -0.09], {draggable: true}).addTo(map).bindPopup("<b>Hi</b><br>I am a popup.");
+var marker2 = L.marker([155.5, -0.09], {draggable: true}).addTo(map).bindPopup("<b>Yo</b><br>I am a popup.");
+var marker3 = L.marker([256.5, -0.09], {draggable: true}).addTo(map).bindPopup("<b>README</b><br>I am a popup.");
+
+
+
 
 //marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
 //marker1.bindPopup("<b>Hi</b><br>I am a popup.").openPopup();
@@ -49,10 +52,19 @@ var popup = L.popup();
 function onMapClick(e) {
     popup
         .setLatLng(e.latlng)
-        .setContent("You clicked the map at " + e.latlng.toString())
+        .setContent("You clicked the map at " + e.latlng.toString());
         //.openOn(map);
-		marker = L.marker([-20, -20], {icon: green2Icon}).addTo(map);
+		//marker = L.marker([-20, -20], {icon: green2Icon,draggable:"true"}).addTo(map).bindPopup("<b>Lights On</b><br>The lights are on here.");
+		//marker.setIcon(green2Icon);
 }
+function changeIcon(e)
+{
+	this.setIcon(green2Icon);
+	//this.bindPopup("<b>Lights On</b><br>The lights are on here.");
+}
+
+marker.on("click", changeIcon);
+
 
 map.on('click', onMapClick);
 
