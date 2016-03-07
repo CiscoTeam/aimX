@@ -3,12 +3,11 @@ var map = L.map('map', {
 	minZoom: -5
 });
 
+<<<<<<< HEAD
 var bounds = [[0,0], [1000,1000]];
 var image = L.imageOverlay('test_map_full.png', bounds).addTo(map);
 
 map.fitBounds(bounds);
-
-
 
 var greenIcon = L.icon({
     iconUrl: 'lightBulb_off.png',
@@ -19,6 +18,7 @@ var greenIcon = L.icon({
     iconAnchor:   [10, 34], // point of the icon which will correspond to marker's location
     shadowAnchor: [4, 62],  // the same for the shadow
     popupAnchor:  [0, -35] // point from which the popup should open relative to the iconAnchor
+
 });
 
 var green2Icon = L.icon({
@@ -36,8 +36,6 @@ var marker = L.marker([-20, -20],{draggable: true,icon: greenIcon,title: "Light"
 var marker1 = L.marker([54.5, -0], {draggable: true}).addTo(map).bindPopup("<b>Hi</b><br>I am a popup.");
 var marker2 = L.marker([155.5, -0], {draggable: true}).addTo(map).bindPopup("<b>Yo</b><br>I am a popup.");
 var marker3 = L.marker([-256.5, -0], {draggable: true}).addTo(map).bindPopup("<b>README</b><br>I am a popup.");
-
-
 
 
 //marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
@@ -72,7 +70,6 @@ function mouseDragEnd(e)
 //map.on('click', onMapClick);
 //map.on('mousemove', mouseDragEnd);
 //drap and drop stuff
-
 
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
