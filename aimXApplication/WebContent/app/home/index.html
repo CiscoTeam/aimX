@@ -35,7 +35,7 @@
 					<li><a href="../quickControls">Quick Controls</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Welcome {{vm.user.firstName}}!!</a></li>
+					<li><a href="../account">Welcome {{vm.user.firstName}}!!</a></li>
 					<li><a href="/login"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</ul>
 			</div>
@@ -43,14 +43,15 @@
 	</nav>
 
 	<div class="container">
+		<h1>Hi {{vm.user.firstName}}!!</h1>
 		<h2>Home</h2>
 	</div>
 	
 	<div class="text-center container page-content text-center">
 		<button href="#" type="button" class="btn btn-primary">Add Devices</button>
-		<a href="/floorPlan" class="btn btn-primary">Floor Plan</a>
-		<a href="/devices" type="button" class="btn btn-primary">Device View</a>
-		<a href="/quickControls" type="button" class="btn btn-primary">Quick Controls</a>
+		<a href="../floorPlan" class="btn btn-primary">Floor Plan</a>
+		<a href="../devices" type="button" class="btn btn-primary">Device View</a>
+		<a href="../quickControls" type="button" class="btn btn-primary">Quick Controls</a>
 	</div>
 	<footer class="footer">
 		<p>Team Cisco 2016 ASU Senior Capstone Project</p>
