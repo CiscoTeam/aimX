@@ -1,0 +1,27 @@
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8" />
+        <title>AngularJS Plunker</title>
+        <script>document.write('<base href="' + document.location + '" />');</script>
+        <link rel="stylesheet" href="style.css" />
+        <script data-require="angular.js@1.2.x" src="https://code.angularjs.org/1.2.16/angular.js" data-semver="1.2.16"></script>
+        <script src="app.js"></script>
+		<html ng-app="weatherApp">
+      </head>
+      <body ng-controller="weatherCtrl">
+          <form>
+            <input type="number" ng-model="zip">
+            <input type="submit" value="Search" ng-click="findWeather(zip)">
+          </form>
+          <p ng-show="zip">Searching the forecasts for: {{zip}}</p>
+          <div>
+            <h1>Forecast For: {{ place.location.city }}</h1>
+            <h2>Current: {{ place.item.condition.text }} | {{ place.item.condition.temp }}&deg; <img src="http://l.yimg.com/a/i/us/we/52/{{place.item.condition.code}}.gif"/></h2>
+            <div ng-repeat="forecast in place.item.forecast">
+              <p><strong>{{ forecast.date }}</strong> – {{ forecast.text }}</p>
+              <p>H: {{ forecast.high }}&deg; | L: {{ forecast.low }}&deg;</p>
+            </div>
+          </div>
+      </body>
+    </html>
