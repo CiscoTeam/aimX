@@ -9,10 +9,19 @@
 	rel="stylesheet" />
 <link href="/WebContent/app/app-content/app.css" rel="stylesheet" />
 </head>
-<body class="container">
+
+<body ng-app="app">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+	
+<div ng-controller="dateController">
+		<p>{{CurrentDate | date: 'MMMM dd, yyyy'}} 
+ {{CurrentDate | date:'hh:mm a'}}</p>
+	</div>
+
 	<!-- header -->
 	<header>
 		<h1>aimX Automation Integration & Monitoring System</h1>
+
 
 		<ul class="nav nav-tabs">
 			<li ng-class="{active: activeTab === 'home'}"><a ui-sref="home">Home</a></li>
@@ -40,6 +49,7 @@
 	<!-- application scripts -->
 	<script src="node_modules/angular/angular.min.js"></script>
 	<script src="WebContent/app/app.js"></script>
+	<script src="dateController.js"></script>
 	<script src="WebContent/app/app-services/user.service.js"></script>
 	<script src="WebContent/app/app-services/flash.service.js"></script>
 	<script src="WebContent/app/home/index.controller.js"></script>
