@@ -27,6 +27,7 @@ var iconLightOff = L.icon({
     iconAnchor:   [10, 34], // point of the icon which will correspond to marker's location
     shadowAnchor: [10, 34],  // the same for the shadow
     popupAnchor:  [0, -35] // point from which the popup should open relative to the iconAnchor
+
 });
 
 var iconLightOn = L.icon({
@@ -43,7 +44,6 @@ var marker = L.marker([-20, -20],{draggable: true,icon: iconLightOff,title: "Lig
 var marker1 = L.marker([54.5, -0], {draggable: true}).addTo(map).bindPopup("<b>Hi</b><br>I am a popup.");
 var marker2 = L.marker([155.5, -0], {draggable: true}).addTo(map).bindPopup("<b>Yo</b><br>I am a popup.");
 var marker3 = L.marker([-256.5, -0], {draggable: true}).addTo(map).bindPopup("<b>README</b><br>I am a popup.");
-
 
 var popup = L.popup();
 
@@ -65,8 +65,6 @@ function mouseDragEnd(e)
 	var y = ev.clientY;
 	console.log("drag x:"+x+" y:"+y);
 }
-
-
 
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
