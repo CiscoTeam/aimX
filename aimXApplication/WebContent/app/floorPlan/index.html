@@ -77,10 +77,9 @@ function drop(ev) {
 				<div id="map" ondrop="dropOnMap(event)" ondragover="allowDrop(event)"></div>
 				<button type="button" class="btn btn-primary">Upload Floor Plan Image</button>
 				
-				<img id="drag01" draggable="true" class="drag" ondragstart="drag(event)" type="tree" src="lightBulb_off.png" alt="TREE: green" />
-				<img id="drag02" draggable="true" class="drag" ondragstart="drag(event)" type="tree2" src="lightBulb_off.png" alt="TREE: green2" />
+				<img id="drag01" draggable="true" class="drag dragTest" ondragstart="drag(event)" type="tree" src="lightBulb_off.png" alt="TREE: green" />
+				<img id="drag02" draggable="true" class="drag dragTest" ondragstart="drag(event)" type="tree2" src="lightBulb_on.png" alt="TREE: green2" />
 				
-				<div id="drop" style="min-height:30px;background-color:#555555;" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 				<div id="drag" draggable="true" ondragstart="drag(event)">drag me!</div>
 				<div id="drag2" draggable="true" ondragstart="drag(event)">drag me! also</div>
 			</div>

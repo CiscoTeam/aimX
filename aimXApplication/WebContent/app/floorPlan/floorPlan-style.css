@@ -53,3 +53,8 @@ div.floorPlan-content
 	height: 500px; 
 	background-color: #333333
 	}
+	
+.dragTest
+{
+	width:30px;
+}
