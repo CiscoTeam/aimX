@@ -11,12 +11,15 @@
 	<script src="/bootstrapJS"></script>
     <script src="/bootstrapJSIE10"></script>
 
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="app-content/app.css" rel="stylesheet" />
+
 	<!-- stylesheets (last so they take priority) -->
-	<link rel="stylesheet" type="text/css" href="../style.css" />
-	<link rel="stylesheet" type="text/css" href="home-style.css" />
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link rel="stylesheet" type="text/css" href="home/home-style.css" />
 </head>
 
-<body ng-app="aimXApp">
+<body class="ng-app="aimXApp"">
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -30,32 +33,48 @@
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="../home">Home</a></li>
-					<li><a href="../floorPlan">Floor Plan</a></li>
-					<li><a href="../devices">Devices</a></li>
-					<li><a href="../quickControls">Quick Controls</a></li>
+					<li><a href="floorPlan/index.html">Floor Plan</a></li>
+					<li><a href="devices/index.html">Devices</a></li>
+					<li><a href="quickControls/index.html">Quick Controls</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../account">Welcome {{vm.user.firstName}}!!</a></li>
+					<li><a href="#">Welcome {{vm.user.firstName}}</a></li>
 					<li><a href="/login"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</ul>
+
+				<div class="flash-message" ng-if="flash">
+		            <div class="{{'alert alert-' + flash.type}}" ng-bind="flash.message"></div>
+		        </div>
 			</div>
 		</div>
 	</nav>
 
 	<div class="container">
-		<h1>Hi {{vm.user.firstName}}!!</h1>
+		<h2>Hi {{vm.user.firstName}}</h2>
 		<h2>Home</h2>
 	</div>
 	
 	<div class="text-center container page-content text-center">
 		<button href="#" type="button" class="btn btn-primary">Add Devices</button>
-		<a href="../floorPlan" class="btn btn-primary">Floor Plan</a>
-		<a href="../devices" type="button" class="btn btn-primary">Device View</a>
-		<a href="../quickControls" type="button" class="btn btn-primary">Quick Controls</a>
+		<a href="/floorPlan" class="btn btn-primary">Floor Plan</a>
+		<a href="/devices" type="button" class="btn btn-primary">Device View</a>
+		<a href="/quickControls" type="button" class="btn btn-primary">Quick Controls</a>
 	</div>
 	<footer class="footer">
 		<p>Team Cisco 2016 ASU Senior Capstone Project</p>
 	</footer>
+
+    <!-- external scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+
+    <!-- application scripts -->
+    <script src="app.js"></script>
+    <script src="app-services/user.service.js"></script>
+    <script src="app-services/flash.service.js"></script>
+    <script src="home/index.controller.js"></script>
+    <script src="account/index.controller.js"></script>
 
 </body>
 </html>

@@ -13,3 +13,8 @@ div.page-content
 	font-size: 40px;
 	padding: 50px;
 }
+
+h1
+{
+	text-align: center;
+}
