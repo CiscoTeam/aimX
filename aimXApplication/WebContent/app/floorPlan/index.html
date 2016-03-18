@@ -37,8 +37,8 @@ function drop(ev) {
 
 </head>
 
-<body ng-app="aimXApp">
-	<nav class="navbar navbar-inverse">
+<body>
+	<nav ng-controller="Nav.IndexController as loginInfo" class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -56,6 +56,7 @@ function drop(ev) {
 					<li><a href="../quickControls">Quick Controls</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+					<li><a href="../account">Welcome {{loginInfo.user.firstName}}</a></li>
 					<li><a href="/login"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</ul>
 			</div>
@@ -124,5 +125,15 @@ function drop(ev) {
 	
 	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
 	<script src="indexjs.js"></script>
+	
+	<!-- external scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+
+    <!-- application scripts -->
+    <script src="../app.js"></script>
+    <script src="../app-services/user.service.js"></script>
+    <script src="../app-services/flash.service.js"></script>
+    <script src="index.controller.js"></script>
 </body>
 </html>

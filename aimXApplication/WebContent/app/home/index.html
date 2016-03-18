@@ -11,13 +11,14 @@
 	<script src="/bootstrapJS"></script>
     <script src="/bootstrapJSIE10"></script>
 
+	
 	<!-- stylesheets (last so they take priority) -->
 	<link rel="stylesheet" type="text/css" href="../style.css" />
 	<link rel="stylesheet" type="text/css" href="home-style.css" />
 </head>
 
-<body ng-app="aimXApp">
-	<nav class="navbar navbar-inverse">
+<body >
+	<nav ng-controller="Nav.IndexController as loginInfo" class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -35,7 +36,7 @@
 					<li><a href="../quickControls">Quick Controls</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Welcome {{vm.user.firstName}}!!</a></li>
+					<li><a href="../account">Welcome {{loginInfo.user.firstName}}</a></li>
 					<li><a href="/login"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</ul>
 			</div>
@@ -55,6 +56,15 @@
 	<footer class="footer">
 		<p>Team Cisco 2016 ASU Senior Capstone Project</p>
 	</footer>
+	
+    <!-- external scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
 
+    <!-- application scripts -->
+    <script src="../app.js"></script>
+    <script src="../app-services/user.service.js"></script>
+    <script src="../app-services/flash.service.js"></script>
+    <script src="index.controller.js"></script>
 </body>
 </html>
