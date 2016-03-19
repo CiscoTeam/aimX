@@ -29,6 +29,7 @@ app.get('/bootstrapCSS',function(req,res){res.sendFile(__dirname + '/frameworks/
 app.get('/bootstrapCSSIE10',function(req,res){res.sendFile(__dirname + '/frameworks/bootstrap-master/docs/assets/css/ie10-viewport-bug-workaround.css');});
 app.get('/bootstrapJS',function(req,res){res.sendFile(__dirname + '/frameworks/bootstrap-master/dist/js/bootstrap.min.js');});
 app.get('/bootstrapJSIE10',function(req,res){res.sendFile(__dirname + '/frameworks/bootstrap-master/docs/assets/js/ie-emulation-modes-warning.js');});
+app.get('/styleCSS',function(req,res){res.sendFile(__dirname + '/app/style.css');});
 
 // make '/app' default route
 app.get('/', function (req, res) {
