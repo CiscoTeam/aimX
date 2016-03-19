@@ -3,6 +3,7 @@ var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk(config.connectionString);
 var usersDb = db.get('users');
+var devicesDb = db.get("devices");
 var _ = require('lodash');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
@@ -154,4 +155,29 @@ function _delete(_id) {
         });
 
     return deferred.promise;
+}
+
+function addDevice()
+{
+	
+}
+
+function removeDevice(_id)
+{
+	
+}
+
+function updateDevice()
+{
+	
+}
+
+function getDevice(_id)
+{
+	
+}
+
+function getAllDevices(userID)
+{
+	
 }
