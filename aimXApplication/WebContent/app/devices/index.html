@@ -91,8 +91,8 @@
 			</div>
 		</div>
 
-		<div class="rightPanel col-sm-8 page content">
-	    	<div id="target" class="well" ondrop="drop(event)" ondragover="allowDrop(event)">Lights</div>
+		<div ng-controller="Nav.IndexController as loginInfo" class="rightPanel col-sm-8 page content">
+	    	<div id="target" class="well" ondrop="drop(event)" ondragover="allowDrop(event)">{{loginInfo.user}}</div>
 		</div>
 	</div>
 
