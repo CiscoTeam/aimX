@@ -15,7 +15,6 @@ router.post('/post/:userID', postTodo);
 router.get('/get/:userID', getTodo);
 router.delete('/delete/:_id/:userID', deleteTodo);
 
-
 module.exports = router;
 
 
@@ -24,7 +23,6 @@ function getTodo(req, res) {
 	Todo.find({userID : req.params.userID}, function(err, todos) 
 	{
 	console.info("test "+req.params.userID);
-
 		// if there is an error retrieving, send the error. nothing after res.send(err) will execute
 		if (err)
 			res.send(err)
