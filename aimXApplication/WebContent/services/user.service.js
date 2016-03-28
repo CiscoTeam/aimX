@@ -156,3 +156,28 @@ function _delete(_id) {
 
     return deferred.promise;
 }
+
+function addDevice()
+{
+	
+}
+
+function removeDevice(_id)
+{
+	
+}
+
+function updateDevice()
+{
+	
+}
+
+function getDevice(_id)
+{
+	
+}
+
+function getAllDevices(userID)
+{
+	
+}
