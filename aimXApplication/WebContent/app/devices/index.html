@@ -18,9 +18,23 @@
   	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
     <script src="devices.js"></script>
+	
+	
+		<!-- external scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+
+    <!-- application scripts -->
+    <script src="../app.js"></script>
+    <!----><script src="../app-services/user.service.js"></script>
+    <script src="../app-services/flash.service.js"></script>
+	<script src="dbDevices.js"></script>
+    <script src="index.controller.js"></script>
+	
+	
 </head>
 
-<body>
+<body ng-controller="main.IndexController as mainController">
 	<nav ng-controller="Nav.IndexController as loginInfo" class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -47,7 +61,7 @@
 	</nav>
 	
 	<div class="container">
-		<h2>Devices</h2>
+		<h2>Devices {{ todos.length }}</h2>
 	</div>
 
 	<div class="container">
@@ -100,14 +114,15 @@
 		<p>Team Cisco 2016 ASU Senior Capstone Project</p>
 	</footer>
 
-	<!-- external scripts -->
+	<!-- external scripts 
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
 
-    <!-- application scripts -->
+    <!-- application scripts -- >
     <script src="../app.js"></script>
     <script src="../app-services/user.service.js"></script>
     <script src="../app-services/flash.service.js"></script>
     <script src="index.controller.js"></script>
+	<script src="dbDevices.js"></script>-->
 </body>
 </html>
