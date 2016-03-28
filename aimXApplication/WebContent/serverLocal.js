@@ -1,10 +1,14 @@
 ﻿require('rootpath')();
 var express = require('express');
 var app = express();
+var mongoose = require("mongoose");
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var expressJwt = require('express-jwt');
 var config = require('config.json');
+
+mongoose.connect('mongodb://localhost/test');
+
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
@@ -20,6 +24,7 @@ app.use('/login', require('./controllers/login.controller'));
 app.use('/register', require('./controllers/register.controller'));
 app.use('/app', require('./controllers/app.controller'));
 app.use('/api/users', require('./controllers/api/users.controller'));
+app.use('/test/devices', require('./controllers/openApi/devices.controller'));
 app.use('/app/home', require('./controllers/authenticate.controller'));
 
 app.use(express.static(__dirname + '/frameworks'));

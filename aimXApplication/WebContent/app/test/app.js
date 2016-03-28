@@ -2,12 +2,13 @@
     'use strict';
 
     angular
-        .module('app', ['ui.router'])
+        .module('scotchTodo', ['ui.router'])
         .config(config)
         .run(run);
 
     function config($stateProvider, $urlRouterProvider) {
         // default route
+		console.info("config");
         $urlRouterProvider.otherwise("/");
     }
 
@@ -24,12 +25,12 @@
 
     // manually bootstrap angular after the JWT token is retrieved from the server
     $(function () {
-		console.info("function app");
+		console.info("function hi");
         // get JWT token from server
         $.get('/app/token', function (token) {
             window.jwtToken = token;
 
-            angular.bootstrap(document, ['app']);
+            angular.bootstrap(document, ['scotchTodo']);
         });
     });
 })();
