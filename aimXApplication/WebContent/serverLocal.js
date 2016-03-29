@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var expressJwt = require('express-jwt');
 var config = require('config.json');
 
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect(config.connectionMongoose);
 
 
 app.set('view engine', 'ejs');
@@ -24,7 +24,7 @@ app.use('/login', require('./controllers/login.controller'));
 app.use('/register', require('./controllers/register.controller'));
 app.use('/app', require('./controllers/app.controller'));
 app.use('/api/users', require('./controllers/api/users.controller'));
-app.use('/test/devices', require('./controllers/openApi/devices.controller'));
+app.use('/openApi/devices', require('./controllers/openApi/devices.controller'));
 app.use('/openApi/areas', require('./controllers/openApi/devices.controller'));
 app.use('/app/home', require('./controllers/authenticate.controller'));
 

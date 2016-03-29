@@ -24,8 +24,8 @@
     
 	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
 	
-	<!----><script src="../app.js"></script>
-	<script src="core.js"></script>
+	<script src="../app-js/app.js"></script>
+	<script src="../app-js/devices.db.js"></script>
 	
 </head>
 <!-- SET THE CONTROLLER AND GET ALL TODOS -->
@@ -34,7 +34,7 @@
 
         <!-- HEADER AND TODO COUNT -->
         <div class="jumbotron text-center">
-            <h1>Todo List <span class="label label-info">{{ todos.length }}</span></h1>
+            <h1>Device List <span class="label label-info">{{ devices.length }}</span></h1>
         </div>
 
         <!-- TODO LIST -->
@@ -42,9 +42,9 @@
             <div class="col-sm-4 col-sm-offset-4">
 
                 <!-- LOOP OVER THE TODOS IN $scope.todos -->
-                <div class="checkbox" ng-repeat="todo in todos">
+                <div class="checkbox" ng-repeat="device in devices">
                     <label>
-                        <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
+                        <input type="checkbox" ng-click="deleteTodo(device._id)"> {{ device.name }}
                     </label>
                 </div>
 
@@ -58,7 +58,7 @@
                     <div class="form-group">
 
                         <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                        <input type="text" class="form-control input-lg text-center" placeholder="What do you want to add to the todo list?" ng-model="formData.text">
+                        <input type="text" class="form-control input-lg text-center" placeholder="New Device Name" ng-model="formData.name">
                     </div>
 
                     <!-- createToDo() WILL CREATE NEW TODOS -->
