@@ -1,20 +1,18 @@
-﻿var config = require('config.json');
-var express = require('express');
+﻿var express = require('express');
 var router = express.Router();
-//var userService = require('services/user.service');
 
 var mongoose = require('mongoose'); // mongoose for mongodb
 
 var Area = mongoose.model('area', {
         name : String,
-		parentID : String,
 		userID : String,
+		parentID : String,
 });
 
 
-router.post('/:userID', postArea);
-router.get('/:userID', getAreas);
-router.delete('/:userID/:_id', deleteArea);
+router.post('/area/:userID', postArea);
+router.get('/area/:userID', getAreas);
+router.delete('/area/:userID/:_id', deleteArea);
 
 
 module.exports = router;

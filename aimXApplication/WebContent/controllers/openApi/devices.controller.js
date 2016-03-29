@@ -1,75 +1,74 @@
-﻿var config = require('config.json');
-var express = require('express');
+﻿var express = require('express');
 var router = express.Router();
-//var userService = require('services/user.service');
 
 var mongoose = require('mongoose'); // mongoose for mongodb
 
-var Todo = mongoose.model('Todo', {
-        text : String,
+var Device = mongoose.model('device', {
+        name : String,
 		userID : String,
+		areaID : String,
 });
 
 
-router.post('/post/:userID', postTodo);
-router.get('/get/:userID', getTodo);
-router.delete('/delete/:_id/:userID', deleteTodo);
+router.post('/device/:userID', postDevice);
+router.get('/device/:userID', getDevice);
+router.delete('/device/:userID/:_id', deleteDevice);
 
 module.exports = router;
 
-
-function getTodo(req, res) {
-	// use mongoose to get all todos in the database
-	Todo.find({userID : req.params.userID}, function(err, todos) 
+//send back all devices
+function getDevice(req, res) {
+	// use mongoose to get all devices in the database
+	Device.find({userID : req.params.userID}, function(err, devices) 
 	{
 	console.info("test "+req.params.userID);
 		// if there is an error retrieving, send the error. nothing after res.send(err) will execute
 		if (err)
 			res.send(err)
 
-		res.json(todos); // return all todos in JSON format
+		res.json(devices); // return all devices in JSON format
 	});
 };
 
-// create todo and send back all todos after creation
-function postTodo(req, res) {
-	// create a todo, information comes from AJAX request from Angular
+// create new device and send back all devices
+function postDevice(req, res) {
+	// create a device, information comes from AJAX request from Angular
 	console.info("testing"+req.body.userID);
-	Todo.create({
-		text : req.body.text,
+	Device.create({
+		name : req.body.name,
 		userID : req.body.userID,
 		done : false
-	}, function(err, todo) {
+	}, function(err, device) {
 		if (err)
 			res.send(err);
 
-		// get and return all the todos after you create another
-		Todo.find({userID : req.params.userID}, function(err, todos) {
+		// get and return all the devices after you create another
+		Device.find({userID : req.params.userID}, function(err, devices) {
 			if (err)
 				res.send(err)
-			res.json(todos);
+			res.json(devices);
 		});
 	});
 
 };
 
-// delete a todo
-function deleteTodo(req, res) 
+// delete a device and send back all devices
+function deleteDevice(req, res) 
 {
-	Todo.remove(
+	Device.remove(
 	{
 		_id : req.params._id
 	}, 
-	function(err, todo) 
+	function(err, device) 
 	{
 		if (err)
 			res.send(err);
 
-		// get and return all the todos after you create another
-		Todo.find({userID : req.params.userID}, function(err, todos) {
+		// get and return all the devices after you create another
+		Device.find({userID : req.params.userID}, function(err, devices) {
 			if (err)
 				res.send(err)
-			res.json(todos);
+			res.json(devices);
 		});
 	});
 };

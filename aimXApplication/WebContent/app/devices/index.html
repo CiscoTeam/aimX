@@ -28,7 +28,7 @@
     <script src="../app.js"></script>
     <!----><script src="../app-services/user.service.js"></script>
     <script src="../app-services/flash.service.js"></script>
-	<script src="dbDevices.js"></script>
+	<script src="../app-js/devices.db.js"></script>
     <script src="index.controller.js"></script>
 	
 	
@@ -61,7 +61,7 @@
 	</nav>
 	
 	<div class="container">
-		<h2>Devices {{ todos.length }}</h2>
+		<h2>Devices {{ devices.length }}</h2>
 	</div>
 
 	<div class="container">
@@ -106,7 +106,36 @@
 		</div>
 
 		<div ng-controller="Nav.IndexController as loginInfo" class="rightPanel col-sm-8 page content">
-	    	<div id="target" class="well" ondrop="drop(event)" ondragover="allowDrop(event)">{{loginInfo.user}}</div>
+	    	<div id="target" class="well" ondrop="drop(event)" ondragover="allowDrop(event)">{{loginInfo.user}}
+			    
+				
+				<!-- ///////////////////////testing////////////////////////// -->
+				
+				<h3>Number of Devices: <span class="label label-primary">{{ devices.length }}</span></h3>
+				
+				<!-- LOOP OVER THE DEVICES IN $scope.devices -->
+                <div class="checkbox" ng-repeat="device in devices">
+                    <label>
+                        <input type="checkbox" ng-click="deleteTodo(device._id)"> Name: {{device.name}}
+                    </label>
+                </div>
+				
+				<!-- CREATE NEW DEVICE -->
+				<div class="col-sm-8 col-sm-offset-2 text-center">
+					<form>
+						<div class="form-group">
+
+							<input type="text" class="form-control input-lg text-center" placeholder="New Device Name" ng-model="formData.name">
+						</div>
+
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+					</form>
+				</div>
+				<!-- ///////////////////////testing////////////////////////// -->
+				
+				
+				
+			</div>
 		</div>
 	</div>
 

@@ -1,28 +1,27 @@
-// public/core.js
 'use strict';
-var test = angular.module('testname', [])
+var test = angular.module('app').controller('main.IndexController', mainController);
 
 function mainController($scope, $http) 
 {
 
-	console.info("main");
     $scope.formData = {};
 
+	//when loading page get user ID
 	$http.get('/api/users/current').success(function(data) 
 	{
 		$scope.usertest = data;
 		console.log(data);
-		console.log($scope.usertest.firstName);
 	
-	// when landing on the page, get all todos and show them
-    $http.get('/test/devices/get/'+$scope.usertest._id)
-        .success(function(data) {
-            $scope.todos = data;
-            console.log(data);
-        })
-        .error(function(data) {
-            console.log('Error: ' + data);
-        });
+		//get all devices
+		$http.get('/openApi/devices/device/'+$scope.usertest._id).success(function(data) 
+		{
+			$scope.devices = data;
+			console.log(data);
+		})
+		.error(function(data) 
+		{
+			console.log('Error: ' + data);
+		});
 	
 		
 	})
@@ -30,14 +29,13 @@ function mainController($scope, $http)
 		console.log('Error: ' + data);
 	});
 
-    // when submitting the add form, send the text to the node API
+    // when submitting the add form, send the formData to the node API
     $scope.createTodo = function() {
 		$scope.formData.userID = $scope.usertest._id;
-		console.info("create"+ $scope.formData.userID);
-        $http.post('/test/devices/post/'+$scope.usertest._id, $scope.formData, {name : "hello"})
+        $http.post('/openApi/devices/device/'+$scope.usertest._id, $scope.formData)
             .success(function(data) {
                 $scope.formData = {}; // clear the form so our user is ready to enter another
-                $scope.todos = data;
+                $scope.devices = data;
                 console.log(data);
             })
             .error(function(data) {
@@ -48,18 +46,15 @@ function mainController($scope, $http)
     // delete a todo after checking it
     $scope.deleteTodo = function(id) 
 	{
-        $http.delete('/test/devices/delete/' + id+'/'+$scope.usertest._id).success(function(data) 
+        $http.delete('/openApi/devices/device/'+$scope.usertest._id+'/'+id).success(function(data) 
 		{
 			console.log(id);
-			$scope.todos = data;
+			$scope.devices = data;
 			console.log(data);
 		}).error(function(data) 
 		{
 			console.log('Error: ' + data);
 		});
     };
-
-
-
 };
 
