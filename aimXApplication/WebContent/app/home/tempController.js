@@ -2,9 +2,10 @@
 angular.module('tempApp', []);
 
 app.factory('weatherService', ['$http', '$q', function ($http, $q){
+	    var zip = $('#city').val();
     function getWeather (zip) {
       var deferred = $q.defer();
-      $http.get('https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20weather.forecast%20WHERE%20location%3D%22' + zip + '%22&format=json&diagnostics=true&callback=')
+      $http.get('https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="' + zip + '")&format=json &diagnostics=true&callback=')
         .success(function(data){
           deferred.resolve(data.query.results.channel);
         })
@@ -29,7 +30,6 @@ app.factory('weatherService', ['$http', '$q', function ($http, $q){
       fetchWeather('85203');
     }]);
 
-
     app.controller('weatherCtrl', ['$scope', 'weatherService', function($scope, weatherService) {
       function fetchWeather(zip) {
         weatherService.getWeather(zip).then(function(data){
@@ -44,5 +44,3 @@ app.factory('weatherService', ['$http', '$q', function ($http, $q){
         fetchWeather(zip);
       };
     }]);
-	
-	

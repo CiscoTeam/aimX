@@ -26,7 +26,7 @@ app.factory('weatherService', ['$http', '$q', function ($http, $q){
         }); 
       }
       
-      fetchWeather('84105');
+      fetchWeather('85203');
     }]);
 
 
@@ -37,7 +37,7 @@ app.factory('weatherService', ['$http', '$q', function ($http, $q){
         }); 
       }
       
-      fetchWeather('85142');
+      fetchWeather('85203');
       
       $scope.findWeather = function(zip) {
         $scope.place = '';
