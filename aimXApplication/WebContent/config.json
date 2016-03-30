@@ -1,5 +1,6 @@
 ﻿{
     "connectionString": "localhost:27017/aimX-registration-login",
     "apiUrl":  "http://52.91.31.112:9999/api",
+	"connectionMongoose": "mongodb://localhost/aimX-Devices",
     "secret": "aimx"
 }
