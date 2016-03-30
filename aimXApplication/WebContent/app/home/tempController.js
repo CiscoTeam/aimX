@@ -1,5 +1,5 @@
 
-angular.module('tempApp', []);
+angular.module('app');
 
 app.factory('weatherService', ['$http', '$q', function ($http, $q){
 	    var zip = $('#city').val();
