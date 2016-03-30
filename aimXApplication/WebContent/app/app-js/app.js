@@ -12,7 +12,6 @@
     }
 
     function run($http, $rootScope, $window) {
-		console.info("run");
         // add JWT token as default auth header
         $http.defaults.headers.common['Authorization'] = 'Bearer ' + $window.jwtToken;
 
@@ -24,7 +23,6 @@
 
     // manually bootstrap angular after the JWT token is retrieved from the server
     $(function () {
-		console.info("function app");
         // get JWT token from server
         $.get('/app/token', function (token) {
             window.jwtToken = token;

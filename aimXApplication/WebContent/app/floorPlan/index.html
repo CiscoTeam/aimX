@@ -31,13 +31,14 @@ function drop(ev) {
 	<!-- stylesheets (last so they take priority) -->
 	<link rel="stylesheet" type="text/css" href="../style.css" />
 	<link rel="stylesheet" type="text/css" href="floorPlan-style.css" />
+	<link rel="stylesheet" type="text/css" href="../devices/devices-style.css" />
 	
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
 	
 
 </head>
 
-<body>
+<body ng-controller="main.IndexController as mainController">
 	<nav ng-controller="Nav.IndexController as loginInfo" class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -56,7 +57,7 @@ function drop(ev) {
 					<li><a href="../quickControls">Quick Controls</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../account">Welcome {{loginInfo.user.firstName}}</a></li>
+					<li><a href="../account"><span class="glyphicon glyphicon-user"></span> Welcome {{loginInfo.user.firstName}}</a></li>
 					<li><a href="/login"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</ul>
 			</div>
@@ -80,42 +81,33 @@ function drop(ev) {
 				<img id="drag01" draggable="true" class="drag dragTest" ondragstart="drag(event)" type="tree" src="lightBulb_off.png" alt="TREE: green" />
 				<img id="drag02" draggable="true" class="drag dragTest" ondragstart="drag(event)" type="tree2" src="lightBulb_on.png" alt="TREE: green2" />
 				
-				<div id="drag" draggable="true" ondragstart="drag(event)">drag me!</div>
-				<div id="drag2" draggable="true" ondragstart="drag(event)">drag me! also</div>
+				<!--<div id="drag" draggable="true" ondragstart="drag(event)">drag me!</div>
+				<div id="drag2" draggable="true" ondragstart="drag(event)">drag me! also</div>-->
 			</div>
 			</div>
 		</div>
 		
-		<div class="col-sm-4 page-content">
-			<h3>Devices</h3>
-			<button type="button" class="btn btn-primary">New Device</button>
-			<button type="button" class="btn btn-primary">New Area</button>
-			<div class="device-content">
-				
-				<ul class="nav nav-list">
-					<li><label class="tree-toggler nav-header">Property</label>
-						<ul class="nav nav-list tree">
-							<li><a href="#">Device 1</a></li>
-							<li><a href="#">Device 2</a></li>
-							<li><label class="tree-toggle nav-header">House</label>
-								<ul class="nav nav-list tree">
-									<li><a href="#">Device 3</a></li>
-									<li><a href="#">Device 4</a></li>
-									<li><label class="tree-toggle nav-header">Kitchen</label>
-										<ul class="nav nav-list tree">
-											<li><a href="#">Device 5</a></li>
-											<li><a href="#">Device 6</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-				</ul>
+		
+		<!--Device tree-->
+		<div class="leftPanel col-sm-4 container page-content">
+			<h3>Number of Devices: <span class="label label-primary">{{ devices.length }}</span></h3>
+		    <div class="devicePanel">
+				<div class="easy-tree" ><!--class="easy-tree"-->
+				 
+					<ul>
+						<li ng-repeat="area in areas">{{area.name}}
+							<ul>
+								<li ng-repeat="device in devices | filter:{areaID:area._id}:true">{{device.name}}</li>
+							</ul>
+							
+						</li>
+						<li ng-repeat="device in devices | filter:{areaID:''}:true">{{device.name}}</li>
+					</ul>
+				 
+				 
+				</div>
 			</div>
-			<button type="button" class="btn btn-primary">Remove</button>
-			<button type="button" class="btn btn-primary">Modify</button>
-		</div >
+		</div>
 		
 	</div>
 	
@@ -134,6 +126,10 @@ function drop(ev) {
     <script src="../app.js"></script>
     <script src="../app-services/user.service.js"></script>
     <script src="../app-services/flash.service.js"></script>
+	<script src="../app-js/devices.db.js"></script>
     <script src="index.controller.js"></script>
+	
+	<script src="afterLoad.js"></script>
+	<script src="easyTree.js"></script>
 </body>
 </html>
