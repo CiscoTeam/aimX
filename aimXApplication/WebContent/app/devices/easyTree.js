@@ -4,7 +4,11 @@
  * @Author yuez
  * @Version 0.1
  */
+
+ 
+ 
 (function ($) {
+		
     $.fn.EasyTree = function (options) {
         var defaults = {
             selectable: true,
@@ -22,10 +26,10 @@
                 expandTip: 'expand',
                 selectTip: 'select',
                 unselectTip: 'unselect',
-                editTip: 'edit',
-                addTip: 'add',
-                deleteTip: 'delete',
-                cancelButtonLabel: 'cancle'
+                editTip: 'Edit',
+                addTip: 'Add',
+                deleteTip: 'Delete',
+                cancelButtonLabel: 'Cancel'
             }
         };
 
@@ -223,7 +227,7 @@
 				
                 $(easyTree).find('li > span > a').attr('title', options.i18n.selectTip);
                 $(easyTree).find('li > span > a').click(function (e) {
-					console.info("test");
+
                     var li = $(this).parent().parent();
                     if (li.hasClass('li_selected')) {
                         $(this).attr('title', options.i18n.selectTip);
@@ -254,7 +258,6 @@
                     }
 
                     e.stopPropagation();
-					console.info("test2");
                 });
             }
 

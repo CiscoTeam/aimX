@@ -21,7 +21,6 @@ function getDevice(req, res) {
 	// use mongoose to get all devices in the database
 	Device.find({userID : req.params.userID}, function(err, devices) 
 	{
-	console.info("test "+req.params.userID);
 		// if there is an error retrieving, send the error. nothing after res.send(err) will execute
 		if (err)
 			res.send(err)
@@ -33,10 +32,10 @@ function getDevice(req, res) {
 // create new device and send back all devices
 function postDevice(req, res) {
 	// create a device, information comes from AJAX request from Angular
-	console.info("testing"+req.body.userID);
 	Device.create({
 		name : req.body.name,
 		userID : req.body.userID,
+		areaID : req.body.areaID,
 		done : false
 	}, function(err, device) {
 		if (err)
