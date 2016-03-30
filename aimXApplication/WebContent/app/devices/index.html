@@ -26,7 +26,7 @@
 
     <!-- application scripts -->
     <script src="../app.js"></script>
-    <!----><script src="../app-services/user.service.js"></script>
+    <script src="../app-services/user.service.js"></script>
     <script src="../app-services/flash.service.js"></script>
 	<script src="../app-js/devices.db.js"></script>
     <script src="index.controller.js"></script>
@@ -53,7 +53,7 @@
 					<li><a href="../quickControls">Quick Controls</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../account">Welcome {{loginInfo.user.firstName}}</a></li>
+					<li><a href="../account"><span class="glyphicon glyphicon-user"></span> Welcome {{loginInfo.user.firstName}}</a></li>
 					<li><a href="/login"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</ul>
 			</div>
@@ -111,7 +111,7 @@
 				<h3>Number of Devices: <span class="label label-primary">{{ devices.length }}</span></h3>
 				
 				<!-- LOOP OVER THE DEVICES IN $scope.devices -->
-                <div class="checkbox" ng-repeat="device in devices">
+                <div class="checkbox" ng-repeat="device in devices | filter:{name:'hello world'}:true">
                     <label>
                         <input type="checkbox" ng-click="deleteTodo(device._id)"> Name: {{device.name}}
                     </label>
