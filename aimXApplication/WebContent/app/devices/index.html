@@ -6,11 +6,11 @@
 	<!-- Bootstrap core CSS -->
     <link href="/bootstrapCSS" rel="stylesheet">
     <link href="/bootstrapCSSIE10" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<script src="/bootstrapJS"></script>
     <script src="/bootstrapJSIE10"></script>
-	
+	<script src="easyTree.js"></script>
 	<!-- stylesheets (last so they take priority) -->
 	<link rel="stylesheet" type="text/css" href="../style.css" />
 	<link rel="stylesheet" type="text/css" href="devices-style.css" />
@@ -66,41 +66,38 @@
 
 	<div class="container">
 		<div class="leftPanel col-sm-4 container page-content">
-			<div class="deviceButtons">
-				<button type="button" class="btn btn-primary">Add Device</button>
-				<button type="button" class="btn btn-primary">Delete Device</button>
-		    </div>
 
 		    <div class="devicePanel">
 				 <!--<div id="tree" draggable="true" ondragstart="drag(event)"></div>-->
-				 <div class="well" style="padding: 8px 0;">
-				    <div style="overflow-y: scroll; overflow-x: hidden; height: 500px;">
-				        <ul class="nav nav-list" id="sortable">
-				            <li><label class="tree-toggler nav-header">Interior</label>
-				                <ul class="nav nav-list tree">
-				                    <li><label class="tree-toggler nav-header">Living Room</label>
-				                        <ul class="nav nav-list tree">
-				                            <li><a href="#">Television</a></li>
-				                            <li><a href="#">Fan</a></li>
-				                            <li><label class="tree-toggler nav-header">Living Room Lights </label>
-				                                <ul class="nav nav-list tree">
-				                                    <li><a href="#">Chandelier</a></li>
-				                                    <li><a href="#">Ambient Light</a></li>
-				                                </ul>
-				                            </li>
-				                        </ul>
-				                    </li>
-				                </ul>
-				            </li>
-				            <li class="divider"></li>
-				            <li><label class="tree-toggler nav-header">Kitchen</label>
-				                <ul class="nav nav-list tree">
-				                    <li><a href="#">Kitchen Light 1</a></li>
-				                    <li><a href="#">Kitchen Light 2</a></li>
-				                </ul>
-				            </li>
-				        </ul>
-				    </div>
+				 <div class="easy-tree">
+					<ul>
+						<li>Living Room
+							<ul>
+								<li>Light 1</li>
+								<li>Light 2</li>
+								<li>Entertainments
+									<ul>
+										<li>Television</li>
+										<li>Radio</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+
+						<li>Kitchen
+							<ul>
+								<li>Light 1</li>
+								<li>Light 2</li>
+								<li>Appliances
+									<ul>
+										<li>Stove</li>
+										<li>Dish Washer</li>
+										<li>Fridge</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -153,5 +150,35 @@
     <script src="../app-services/flash.service.js"></script>
     <script src="index.controller.js"></script>
 	<script src="dbDevices.js"></script>-->
+
+    <script>
+    (function ($) {
+        function init() {
+            $('.easy-tree').EasyTree({
+                addable: true,
+                editable: true,
+                deletable: true
+            });
+        }
+
+        window.onload = init();
+    })(jQuery)
+
+	</script>
+
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-36251023-1']);
+	  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
 </body>
 </html>
