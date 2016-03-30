@@ -1,10 +1,14 @@
 ﻿require('rootpath')();
 var express = require('express');
 var app = express();
+var mongoose = require("mongoose");
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var expressJwt = require('express-jwt');
 var config = require('config.json');
+
+mongoose.connect(config.connectionMongoose);
+
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
@@ -20,6 +24,8 @@ app.use('/login', require('./controllers/login.controller'));
 app.use('/register', require('./controllers/register.controller'));
 app.use('/app', require('./controllers/app.controller'));
 app.use('/api/users', require('./controllers/api/users.controller'));
+app.use('/openApi/devices', require('./controllers/openApi/devices.controller'));
+app.use('/openApi/areas', require('./controllers/openApi/devices.controller'));
 app.use('/app/home', require('./controllers/authenticate.controller'));
 
 app.use(express.static(__dirname + '/frameworks'));
@@ -29,6 +35,7 @@ app.get('/bootstrapCSS',function(req,res){res.sendFile(__dirname + '/frameworks/
 app.get('/bootstrapCSSIE10',function(req,res){res.sendFile(__dirname + '/frameworks/bootstrap-master/docs/assets/css/ie10-viewport-bug-workaround.css');});
 app.get('/bootstrapJS',function(req,res){res.sendFile(__dirname + '/frameworks/bootstrap-master/dist/js/bootstrap.min.js');});
 app.get('/bootstrapJSIE10',function(req,res){res.sendFile(__dirname + '/frameworks/bootstrap-master/docs/assets/js/ie-emulation-modes-warning.js');});
+app.get('/styleCSS',function(req,res){res.sendFile(__dirname + '/app/style.css');});
 
 // make '/app' default route
 app.get('/', function (req, res) {
