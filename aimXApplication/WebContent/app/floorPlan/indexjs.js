@@ -40,10 +40,10 @@ var iconLightOn = L.icon({
     popupAnchor:  [0, -35] // point from which the popup should open relative to the iconAnchor
 });
 
-var marker = L.marker([-20, -20],{draggable: true,icon: iconLightOff,title: "Light"},{icon: iconLightOff}).addTo(map).bindPopup("<b>Lights Off</b><br>The lights are off right now");
+/*var marker = L.marker([-20, -20],{draggable: true,icon: iconLightOff,title: "Light"},{icon: iconLightOff}).addTo(map).bindPopup("<b>Lights Off</b><br>The lights are off right now");
 var marker1 = L.marker([54.5, -0], {draggable: true}).addTo(map).bindPopup("<b>Hi</b><br>I am a popup.");
 var marker2 = L.marker([155.5, -0], {draggable: true}).addTo(map).bindPopup("<b>Yo</b><br>I am a popup.");
-var marker3 = L.marker([-256.5, -0], {draggable: true}).addTo(map).bindPopup("<b>README</b><br>I am a popup.");
+var marker3 = L.marker([-256.5, -0], {draggable: true}).addTo(map).bindPopup("<b>README</b><br>I am a popup.");*/
 
 var popup = L.popup();
 
@@ -54,7 +54,7 @@ function changeIcon(e)
 	
 }
 
-marker.on("click", changeIcon);
+//marker.on("click", changeIcon);
 
 var mapPosition = [-20, -20];
 function mouseDragEnd(e)

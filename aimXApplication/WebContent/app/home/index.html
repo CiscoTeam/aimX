@@ -6,15 +6,17 @@
 	<!-- Bootstrap core CSS -->
     <link href="/bootstrapCSS" rel="stylesheet">
     <link href="/bootstrapCSSIE10" rel="stylesheet">
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<script src="/bootstrapJS"></script>
     <script src="/bootstrapJSIE10"></script>
 
-	
 	<!-- stylesheets (last so they take priority) -->
 	<link rel="stylesheet" type="text/css" href="../style.css" />
 	<link rel="stylesheet" type="text/css" href="home-style.css" />
+	
+	
 </head>
 
 <body >
@@ -33,9 +35,9 @@
 			</div>
 			<div class="collapse navbar-collapse"  id="myNavbar">
 				<ul role=navigation class="nav navbar-nav">
-					<li><a href="../home">Home</a></li>
+					<li class="active"><a href="../home">Home</a></li>
 					<li><a href="../floorPlan">Floor Plan</a></li>
-					<li class="active"><a href="../devices">Devices</a></li>
+					<li><a href="../devices">Devices</a></li>
 					<li><a href="../quickControls">Quick Controls</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -113,16 +115,22 @@
 		<p>Team Cisco 2016 ASU Senior Capstone Project</p>
 	</footer>
 	
-    <!-- external scripts -->
+	<!-- external scripts -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
-
+	
+	
+	
     <!-- application scripts -->
-    <script src="../app.js"></script>
+	<script src="../app.js"></script>
 	<script src="dateController.js"></script>
 	<script src="tempController.js"></script>
     <script src="../app-services/user.service.js"></script>
     <script src="../app-services/flash.service.js"></script>
+	<!--<script src="../app-js/devices.db.js"></script>-->
     <script src="index.controller.js"></script>
+	
+
+
 </body>
 </html>
