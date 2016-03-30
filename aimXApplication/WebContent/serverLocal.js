@@ -10,6 +10,7 @@ var config = require('config.json');
 mongoose.connect(config.connectionMongoose);
 
 
+
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.use(bodyParser.urlencoded({ extended: false }));
