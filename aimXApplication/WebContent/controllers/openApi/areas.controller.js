@@ -23,7 +23,6 @@ function getAreas(req, res) {
 
 	Area.find({userID : req.params.userID}, function(err, areas) 
 	{
-	console.info("test "+req.params.userID);
 
 		// if there is an error retrieving, send the error. nothing after res.send(err) will execute
 		if (err)
@@ -37,10 +36,9 @@ function getAreas(req, res) {
 function postArea(req, res) {
 	// create a area, information comes from AJAX request from Angular
 
-	console.info("testing"+req.body.userID);
 	Area.create({
 		name : req.body.name,
-		parentID : req.body.parentID;
+		parentID : req.body.parentID,
 		userID : req.body.userID,
 
 		done : false

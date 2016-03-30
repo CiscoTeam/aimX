@@ -25,7 +25,7 @@ app.use('/register', require('./controllers/register.controller'));
 app.use('/app', require('./controllers/app.controller'));
 app.use('/api/users', require('./controllers/api/users.controller'));
 app.use('/openApi/devices', require('./controllers/openApi/devices.controller'));
-app.use('/openApi/areas', require('./controllers/openApi/devices.controller'));
+app.use('/openApi/areas', require('./controllers/openApi/areas.controller'));
 app.use('/app/home', require('./controllers/authenticate.controller'));
 
 app.use(express.static(__dirname + '/frameworks'));

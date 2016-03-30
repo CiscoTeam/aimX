@@ -31,7 +31,7 @@
 	<script src="../app-js/devices.db.js"></script>
     <script src="index.controller.js"></script>
 	
-	<script src="easyTree.js"></script>
+
 	
 	
 </head>
@@ -68,17 +68,30 @@
 
 	<div class="container">
 		<div class="leftPanel col-sm-4 container page-content">
-
+			<h3>Number of Devices: <span class="label label-primary">{{ devices.length }}</span></h3>
 		    <div class="devicePanel">
-				 <!--<div id="tree" draggable="true" ondragstart="drag(event)"></div>-->
-				 <div class="easy-tree">
+				<!--<div id="tree" draggable="true" ondragstart="drag(event)"></div>-->
+				<div class="easy-tree">
+				 
+					<!--<ul>
+						<li ng-repeat="area in areas | filter:{parentID:''}:true" ng-include="'tree_recursion.html'"></li>
+						<li ng-repeat="device in devices | filter:{areaID:''}:true">{{device.name}}</li>
+					</ul>-->
+				 
+				 
+				 
+				 
+				 
+				 
+				 
 					<ul>
-						<li ng-repeat="area in devices | filter:{name:'hello world'}:true">{{area.name}}
+						<li ng-repeat="area in areas">{{area.name}}
 							<ul>
-								<li ng-repeat="device in devices">{{device.name}}</li>
+								<li ng-repeat="device in devices | filter:{areaID:area._id}:true">{{device.name}}</li>
 							</ul>
 							
 						</li>
+						<li ng-repeat="device in devices | filter:{areaID:''}:true">{{device.name}}</li>
 					</ul>
 				 
 				 
@@ -87,7 +100,7 @@
 				 
 				 
 					<!-- ///////////////////// -->
-					<ul>
+					<!--<ul>
 						<li>Living Room
 							<ul>
 								<li>Light 1</li>
@@ -114,41 +127,68 @@
 								</li>
 							</ul>
 						</li>
-					</ul>
+					</ul>-->
 				</div>
 			</div>
 		</div>
 
 		<div ng-controller="Nav.IndexController as loginInfo" class="rightPanel col-sm-8 page content">
-	    	<div id="target" class="well" ondrop="drop(event)" ondragover="allowDrop(event)">{{loginInfo.user}}
+	    	<div id="target" class="well" ondrop="drop(event)" ondragover="allowDrop(event)">
 			    
 				
 				<!-- ///////////////////////testing////////////////////////// -->
 				
-				<h3>Number of Devices: <span class="label label-primary">{{ devices.length }}</span></h3>
-				
 				<!-- LOOP OVER THE DEVICES IN $scope.devices -->
-                <div class="checkbox" ng-repeat="device in devices | filter:{name:'hello world'}:true">
+                <!--<div class="checkbox" ng-repeat="area in areas">
                     <label>
-                        <input type="checkbox" ng-click="deleteTodo(device._id)"> Name: {{device.name}}
-								<div style="color:#0000ff;background-color: lightblue;" class="checkbox" ng-repeat="device in devices">
+                        <input type="checkbox" ng-click="deleteArea(area._id)"> Area: {{area.name}} {{area._id}}
+								<div style="color:#0000ff;background-color: lightblue;" class="checkbox" ng-repeat="device in devices | filter:{areaID:area._id}:true">
 									<label>
-										<input type="checkbox" ng-click="deleteTodo(device._id)"> Name: {{device.name}}
+										<input type="checkbox" ng-click="deleteDevice(device._id)"> Device: {{device.name}}
 								
 									</label>
 								</div>
                     </label>
                 </div>
+				<div style="color:#0000ff;background-color: lightblue;" class="checkbox" ng-repeat="device in devices">
+					<label>
+						<input type="checkbox" ng-click="deleteDevice(device._id)"> Device: {{device.name}}
+				
+					</label>
+				</div>-->
 				
 				<!-- CREATE NEW DEVICE -->
-				<div class="col-sm-8 col-sm-offset-2 text-center">
+				<div class="text-center">
 					<form>
 						<div class="form-group">
 
-							<input type="text" class="form-control input-lg text-center" placeholder="New Device Name" ng-model="formData.name">
+							<input type="text" class="form-control input-lg text-center" placeholder="New Device Name" ng-model="formDeviceData.name">
+							<!--<input type="text" class="form-control input-lg text-center" placeholder="New Device Area _id" ng-model="formDeviceData.areaID">-->
+							<select name="area id's" ng-model="formDeviceData.areaID">
+								<option value="">Select an Area</option>
+								<option ng-repeat="area in areas" value="{{area._id}} " >{{area.name}}</option>
+							</select>
 						</div>
 
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="createDevice()">Add Device</button>
+					</form>
+				</div>
+				
+				<!-- CREATE NEW AREA -->
+				<div class="text-center">
+					<form>
+						<div class="form-group">
+
+							<input type="text" class="form-control input-lg text-center" placeholder="New Area Name" ng-model="formAreaData.name">
+							
+							<!--<select name="area id's" ng-model="formAreaData.parentID">
+								<option value="">Select an Area</option>
+								<option ng-repeat="area in areas" value="{{area._id}} " >{{area.name}}</option>
+							</select>-->
+
+						</div>
+						
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="createArea()">Add Area</button>
 					</form>
 				</div>
 				<!-- ///////////////////////testing////////////////////////// -->
@@ -173,34 +213,18 @@
     <script src="../app-services/flash.service.js"></script>
     <script src="index.controller.js"></script>
 	<script src="dbDevices.js"></script>-->
-    <script>
-    (function ($) {
-        function init() {
-            $('.easy-tree').EasyTree({
-                addable: true,
-                editable: true,
-                deletable: true
-            });
-        }
+    <script src="afterLoad.js"></script>
+	<script src="easyTree.js"></script>
 
-        window.onload = init();
-    })(jQuery)
-
-	</script>
-
-	<script type="text/javascript">
-
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-36251023-1']);
-	  _gaq.push(['_setDomainName', 'jqueryscript.net']);
-	  _gaq.push(['_trackPageview']);
-
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
-
+	
+	<script type="text/ng-template"  id="tree_recursion.html">
+		{{area.name}}
+		<!--<button ng-click="add(data)">Add node</button>
+		<button ng-click="delete(data)" ng-show="data.nodes.length > 0">Delete nodes</button>-->
+		<ul>
+			<li ng-repeat="device in devices | filter:{areaID:area._id}:true">{{device.name}}</li>
+			<li ng-repeat="area in areas | filter:{parentID:area._id}:true" ng-include="'tree_recursion.html'"></li>
+		</ul>
 	</script>
 	
 </body>
