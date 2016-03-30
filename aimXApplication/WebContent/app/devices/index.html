@@ -10,7 +10,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<script src="/bootstrapJS"></script>
     <script src="/bootstrapJSIE10"></script>
-	<script src="easyTree.js"></script>
+	
 	<!-- stylesheets (last so they take priority) -->
 	<link rel="stylesheet" type="text/css" href="../style.css" />
 	<link rel="stylesheet" type="text/css" href="devices-style.css" />
@@ -26,10 +26,12 @@
 
     <!-- application scripts -->
     <script src="../app.js"></script>
-    <!----><script src="../app-services/user.service.js"></script>
+    <script src="../app-services/user.service.js"></script>
     <script src="../app-services/flash.service.js"></script>
 	<script src="../app-js/devices.db.js"></script>
     <script src="index.controller.js"></script>
+	
+	<script src="easyTree.js"></script>
 	
 	
 </head>
@@ -53,7 +55,7 @@
 					<li><a href="../quickControls">Quick Controls</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../account">Welcome {{loginInfo.user.firstName}}</a></li>
+					<li><a href="../account"><span class="glyphicon glyphicon-user"></span> Welcome {{loginInfo.user.firstName}}</a></li>
 					<li><a href="/login"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</ul>
 			</div>
@@ -61,7 +63,7 @@
 	</nav>
 	
 	<div class="container">
-		<h2>Devices {{ devices.length }}</h2>
+		<h2>Devices</h2>
 	</div>
 
 	<div class="container">
@@ -70,6 +72,21 @@
 		    <div class="devicePanel">
 				 <!--<div id="tree" draggable="true" ondragstart="drag(event)"></div>-->
 				 <div class="easy-tree">
+					<ul>
+						<li ng-repeat="area in devices | filter:{name:'hello world'}:true">{{area.name}}
+							<ul>
+								<li ng-repeat="device in devices">{{device.name}}</li>
+							</ul>
+							
+						</li>
+					</ul>
+				 
+				 
+				 
+				 
+				 
+				 
+					<!-- ///////////////////// -->
 					<ul>
 						<li>Living Room
 							<ul>
@@ -111,9 +128,15 @@
 				<h3>Number of Devices: <span class="label label-primary">{{ devices.length }}</span></h3>
 				
 				<!-- LOOP OVER THE DEVICES IN $scope.devices -->
-                <div class="checkbox" ng-repeat="device in devices">
+                <div class="checkbox" ng-repeat="device in devices | filter:{name:'hello world'}:true">
                     <label>
                         <input type="checkbox" ng-click="deleteTodo(device._id)"> Name: {{device.name}}
+								<div style="color:#0000ff;background-color: lightblue;" class="checkbox" ng-repeat="device in devices">
+									<label>
+										<input type="checkbox" ng-click="deleteTodo(device._id)"> Name: {{device.name}}
+								
+									</label>
+								</div>
                     </label>
                 </div>
 				
@@ -150,7 +173,6 @@
     <script src="../app-services/flash.service.js"></script>
     <script src="index.controller.js"></script>
 	<script src="dbDevices.js"></script>-->
-
     <script>
     (function ($) {
         function init() {
@@ -180,5 +202,6 @@
 	  })();
 
 	</script>
+	
 </body>
 </html>

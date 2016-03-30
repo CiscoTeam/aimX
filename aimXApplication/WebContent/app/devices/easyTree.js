@@ -21,7 +21,7 @@
                 collapseTip: 'collapse',
                 expandTip: 'expand',
                 selectTip: 'select',
-                unselectTip: 'unselet',
+                unselectTip: 'unselect',
                 editTip: 'edit',
                 addTip: 'add',
                 deleteTip: 'delete',
@@ -220,8 +220,10 @@
 
             // selectable, only single select
             if (options.selectable) {
+				
                 $(easyTree).find('li > span > a').attr('title', options.i18n.selectTip);
                 $(easyTree).find('li > span > a').click(function (e) {
+					console.info("test");
                     var li = $(this).parent().parent();
                     if (li.hasClass('li_selected')) {
                         $(this).attr('title', options.i18n.selectTip);
@@ -252,7 +254,7 @@
                     }
 
                     e.stopPropagation();
-
+					console.info("test2");
                 });
             }
 
