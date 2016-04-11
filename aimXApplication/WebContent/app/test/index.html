@@ -44,7 +44,7 @@
                 <!-- LOOP OVER THE TODOS IN $scope.todos -->
                 <div class="checkbox" ng-repeat="device in devices">
                     <label>
-                        <input type="checkbox" ng-click="deleteTodo(device._id)"> {{ device.name }}
+                        <input type="checkbox" ng-click="deleteDevice(device._id)"> {{ device.name }}
                     </label>
                 </div>
 
