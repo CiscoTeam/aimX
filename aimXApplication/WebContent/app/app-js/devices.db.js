@@ -54,7 +54,7 @@ function mainController($scope, $http)
             });
     };
 
-    // delete a todo after checking it
+    // delete a device after checking it
     $scope.deleteDevice = function(id) 
 	{
         $http.delete('/openApi/devices/device/'+$scope.usertest._id+'/'+id).success(function(data) 
@@ -62,6 +62,24 @@ function mainController($scope, $http)
 			console.log(id);
 			$scope.devices = data;
 			console.log(data);
+			$scope.deviceInfo = null;
+		}).error(function(data) 
+		{
+			console.log('Error: ' + data);
+		});
+    };
+	
+	    // update a device after checking it
+    $scope.updateDevice = function() 
+	{
+		$scope.deviceInfoSend = $scope.deviceInfo
+        $http.put('/openApi/devices/deviceUpdate/'+$scope.usertest._id+'/'+$scope.deviceInfoSend._id, $scope.deviceInfoSend).success(function(data) 
+		{
+			console.log($scope.deviceInfo._id);
+			$scope.devices = data;
+			console.log(data);
+			
+
 		}).error(function(data) 
 		{
 			console.log('Error: ' + data);
@@ -84,7 +102,7 @@ function mainController($scope, $http)
             });
     };
 
-    // delete a todo after checking it
+    // delete a area after checking it
     $scope.deleteArea = function(id) 
 	{
         $http.delete('/openApi/areas/area/'+$scope.usertest._id+'/'+id).success(function(data) 
@@ -98,5 +116,13 @@ function mainController($scope, $http)
 		});
     };
 	
+	//Get device info on click
+	$scope.getInfo = function(device) 
+	{
+			
+			console.log(device._id);
+			$scope.deviceInfo = device;
+
+    };
 };
 
