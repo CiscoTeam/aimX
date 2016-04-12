@@ -313,8 +313,8 @@
 
 	
 	<script type="text/ng-template"  id="tree_recursion.html">
-		<a data-toggle="collapse" data-target="#{{area._id}}"><span class="glyphicon glyphicon-folder-open"></span> {{area.name}}</a> <span class="glyphicon glyphicon-edit"></span>
-		<button class="btn btn-danger btn-sm" ng-click="deleteArea(area._id)">X</button>
+		<a data-toggle="collapse" data-target="#{{area._id}}"><span class="glyphicon glyphicon-folder-open"></span></a> {{area.name}} <!--<span class="glyphicon glyphicon-edit"></span>-->
+		<!--<button class="btn btn-danger btn-sm" ng-click="deleteArea(area._id)">X</button>-->
 		<!--<button ng-click="delete(data)" ng-show="data.nodes.length > 0">Delete nodes</button>-->
 		<ul class="collape in" id={{area._id}} >
 			<li id={{device._id}} draggable="true" ondragstart="drag(event)" ng-click="getInfo(device)" ng-repeat="device in devices | filter:{areaID:area._id}:true"><span class="glyphicon glyphicon-file"></span> {{device.name}}</li>
