@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Quick Controls</title>
-	
+
 	<!-- Bootstrap core CSS -->
     <link href="/bootstrapCSS" rel="stylesheet">
     <link href="/bootstrapCSSIE10" rel="stylesheet">
@@ -10,7 +10,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<script src="/bootstrapJS"></script>
     <script src="/bootstrapJSIE10"></script>
-	
+
 	<!-- stylesheets (last so they take priority) -->
 	<link rel="stylesheet" type="text/css" href="../style.css" />
 	<link rel="stylesheet" type="text/css" href="quickControls-style.css" />
@@ -45,7 +45,7 @@
 		<h2>Quick Controls</h2>
 	</div>
 	<div class="container page-content">
-		
+
 		<ul class="nav nav-tabs nav-content">
 			<li class="active"><a data-toggle="tab" href="#profile1">Profile #1</a></li>
 			<li><a data-toggle="tab" href="#profile2">Profile #2</a></li>
@@ -99,11 +99,18 @@
 			</div>
 		</div>
 	</div>
-	
+
+	<div id="tripmeter">
+  <p>
+    Starting Location (lat, lon):<br/>
+    <span id="startLat">???</span>, <span id="startLon">???</span>
+  </p>
+</div>
+
 	<footer class="footer">
 		<p>Team Cisco 2016 ASU Senior Capstone Project</p>
 	</footer>
-	
+
     <!-- external scripts -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>

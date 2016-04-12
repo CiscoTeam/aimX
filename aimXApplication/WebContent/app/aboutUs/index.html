@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Us</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/bootstrapCSS" rel="stylesheet">
+    <link href="/bootstrapCSSIE10" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="/bootstrapJS"></script>
+    <script src="/bootstrapJSIE10"></script>
+
+    <!-- stylesheets (last so they take priority) -->
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+</head>
+<body ng-controller="AboutUs.IndexController as account">
+	<nav ng-controller="Nav.IndexController as loginInfo" class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">aimX</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="../home">Home</a></li>
+					<li><a href="../floorPlan">Floor Plan</a></li>
+					<li><a href="../devices">Devices</a></li>
+					<li><a href="../quickControls">Quick Controls</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="../account"><span class="glyphicon glyphicon-user"></span> Welcome {{account.user.firstName}}</a></li>
+					<li><a href="/login"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+
+  	<div class="container">
+  		<h2>About Us</h2>
+  	</div>
+
+  	<footer class="footer">
+  		<p>Team Cisco 2016 ASU Senior Capstone Project</p>
+  	</footer>
+
+  	<!-- external scripts -->
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+
+      <!-- application scripts -->
+      <script src="../app.js"></script>
+      <script src="../app-services/user.service.js"></script>
+      <script src="../app-services/flash.service.js"></script>
+      <script src="index.controller.js"></script>
+  	<script src="account.controller.js"></script>
+  </body>
