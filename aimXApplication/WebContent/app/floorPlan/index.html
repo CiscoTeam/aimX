@@ -78,8 +78,8 @@ function drop(ev) {
 				<div id="map" ondrop="dropOnMap(event)" ondragover="allowDrop(event)"></div>
 				<button type="button" class="btn btn-primary">Upload Floor Plan Image</button>
 				
-				<img id="drag01" draggable="true" class="drag dragTest" ondragstart="drag(event)" type="tree" src="lightBulb_off.png" alt="TREE: green" />
-				<img id="drag02" draggable="true" class="drag dragTest" ondragstart="drag(event)" type="tree2" src="lightBulb_on.png" alt="TREE: green2" />
+				<img id="drag01" draggable="true" class="drag dragTest" ondragstart="drag(event)" type="tree" src="icons/lightBulb_off.png" alt="TREE: green" />
+				<img id="drag02" draggable="true" class="drag dragTest" ondragstart="drag(event)" type="tree2" src="icons/lightBulb_on.png" alt="TREE: green2" />
 				
 				<!--<div id="drag" draggable="true" ondragstart="drag(event)">drag me!</div>
 				<div id="drag2" draggable="true" ondragstart="drag(event)">drag me! also</div>-->
@@ -88,23 +88,25 @@ function drop(ev) {
 		</div>
 		
 		
-		<!--Device tree-->
+		
 		<div class="leftPanel col-sm-4 container page-content">
+		<!--Device tree-->
 			<h3>Number of Devices: <span class="label label-primary">{{ devices.length }}</span></h3>
+			<div class="well">
+				<button class="btn btn-primary" data-toggle="modal" data-target="#addDevice"> Add Device <span class="glyphicon glyphicon-hdd"></span> </button>
+				<button class="btn btn-primary" data-toggle="modal" data-target="#addArea"> Add Area <span class="glyphicon glyphicon-folder-open"></span> </button>
+			</div>
 		    <div class="devicePanel">
-				<div class="easy-tree" ><!--class="easy-tree"-->
-				 
+				<div>
 					<ul>
-						<li ng-repeat="area in areas">{{area.name}}
-							<ul>
-								<li ng-repeat="device in devices | filter:{areaID:area._id}:true">{{device.name}}</li>
-							</ul>
-							
-						</li>
-						<li ng-repeat="device in devices | filter:{areaID:''}:true">{{device.name}}</li>
+						<!-- gets root areas and populates them -->
+						<li ng-repeat="area in areas | filter:filterParentExists | orderBy: 'name'" ng-include="'tree_recursion.html'"></li>
+						<!-- gets devices not in a existing folder -->
+						<li id={{device._id}} draggable="true" ondragstart="drag(event)" ng-click="getInfo(device)" ng-repeat="device in devices | filter:filterAreaExists | orderBy: 'name'"><span class="glyphicon glyphicon-hdd"></span> {{device.name}}</li>
 					</ul>
-				 
-				 
+				 	<!--<ul>--------------All Devices --------------
+						<li id={{device._id}} draggable="true" ondragstart="drag(event)" ng-repeat="device in devices" ng-click="getInfo(device)"><div ><span class="glyphicon glyphicon-file"></span>{{device.name}}</div></li>
+					</ul>-->
 				</div>
 			</div>
 		</div>
@@ -115,8 +117,83 @@ function drop(ev) {
 		<p>Team Cisco 2016 ASU Senior Capstone Project</p>
 	</footer>
 	
+	<!-- Modal "Overlay" Add Device-->
+	<div id="addDevice" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+		<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Add Device <span class="glyphicon glyphicon-hdd"></h4>
+				</div>
+				<div class="modal-body">
+					<!-- CREATE NEW DEVICE -->
+					<div class="text-center">
+						<form>
+							<div class="form-group">
+
+								<input type="text" class="form-control input-lg text-center" placeholder="New Device Name" ng-model="formDeviceData.name">
+								<!--<input type="text" class="form-control input-lg text-center" placeholder="New Device Area _id" ng-model="formDeviceData.areaID">-->
+								<select name="area id's" ng-model="formDeviceData.areaID">
+									<option value="">Select an Area</option>
+									<option ng-repeat="area in areas" value="{{area._id}} " >{{area.name}}</option>
+								</select>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary" ng-click="createDevice()">Add Device</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Modal "Overlay" Add Area-->
+	<div id="addArea" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+		<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Add Area <span class="glyphicon glyphicon-folder-open"></h4>
+				</div>
+				<div class="modal-body">
+					<!-- CREATE NEW AREA -->
+					<div class="text-center">
+						<form>
+							<div class="form-group">
+								<input type="text" class="form-control input-lg text-center" placeholder="New Area Name" ng-model="formAreaData.name">
+								
+								<select name="area id's" ng-model="formAreaData.parentID">
+									<option value="">Select an Area</option>
+									<option ng-repeat="area in areas" value="{{area._id}} " >{{area.name}}</option>
+								</select>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary" ng-click="createArea()">Add Area</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/ng-template"  id="tree_recursion.html">
+		<a class="area" data-toggle="collapse" data-target="#{{area._id}}" data-parent="#accordion"><span class="glyphicon glyphicon-folder-open"></span></a> {{area.name}} <!--<span class="glyphicon glyphicon-edit"></span>-->
+		<!--<button class="btn btn-danger btn-sm" ng-click="deleteArea(area._id)">X</button>-->
+		<!--<button ng-click="delete(data)" ng-show="data.nodes.length > 0">Delete nodes</button>-->
+		<ul class="collape in" id={{area._id}} >
+			<li id={{device._id}} draggable="true" ondragstart="drag(event)" ng-click="getInfo(device)" ng-repeat="device in devices | filter:{areaID:area._id}:true | orderBy: 'name'"><span class="glyphicon glyphicon-hdd"></span> {{device.name}}</li>
+			<li ng-repeat="area in areas | filter:{parentID:area._id}:true | orderBy: 'name'" ng-include="'tree_recursion.html'"></li>
+		</ul>
+	</script>
+	
 	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
-	<script src="indexjs.js"></script>
+	<script src="leaflet-js.js"></script>
 	
 	<!-- external scripts -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
@@ -128,8 +205,5 @@ function drop(ev) {
     <script src="../app-services/flash.service.js"></script>
 	<script src="../app-js/devices.db.js"></script>
     <script src="index.controller.js"></script>
-	
-	<script src="afterLoad.js"></script>
-	<script src="easyTree.js"></script>
 </body>
 </html>
