@@ -6,6 +6,7 @@ function mainController($scope, $http)
 
     $scope.formDeviceData = {areaID:''};
 	$scope.formAreaData = {parentID:''};
+	$scope.areas;
 
 	//when loading page get user ID
 	$http.get('/api/users/current').success(function(data) 
@@ -79,6 +80,16 @@ function mainController($scope, $http)
 			$scope.devices = data;
 			console.log(data);
 			
+			var id = $scope.deviceInfo._id;
+			$scope.deviceInfo._id = null;
+			angular.forEach($scope.devices, function(device) 
+			{
+				if(device._id == id)
+				{
+					$scope.deviceInfo = device;
+				}
+			});
+			$scope.deviceInfo = $scope.devices.find({});
 
 		}).error(function(data) 
 		{
@@ -119,10 +130,50 @@ function mainController($scope, $http)
 	//Get device info on click
 	$scope.getInfo = function(device) 
 	{
-			
 			console.log(device._id);
 			$scope.deviceInfo = device;
-
     };
+	
+	$scope.filterAreaExists = function(object) 
+	{
+		if(object.areaID == null)
+		{
+			return (true);
+		}
+		else
+		{
+			var found = false;
+			angular.forEach($scope.areas, function(area) 
+			{
+				if(object.areaID == area._id)
+				{
+					found = true;
+				}
+			});
+			return (!found);
+		}
+		return (false);
+	};
+	
+	$scope.filterParentExists = function(object) 
+	{
+		if(object.parentID == null)
+		{
+			return (true);
+		}
+		else
+		{
+			var found = false;
+			angular.forEach($scope.areas, function(area) 
+			{
+				if(object.parentID == area._id)
+				{
+					found = true;
+				}
+			});
+			return (!found);
+		}
+		return (false);
+	};
 };
 
