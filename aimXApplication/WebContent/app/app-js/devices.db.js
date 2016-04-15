@@ -64,13 +64,14 @@ function mainController($scope, $http)
 			$scope.devices = data;
 			console.log(data);
 			$scope.deviceInfo = null;
+			angular.element('.deviceInfoForm').css('display', 'none');
 		}).error(function(data) 
 		{
 			console.log('Error: ' + data);
 		});
     };
 	
-	    // update a device after checking it
+	// update a device after checking it
     $scope.updateDevice = function() 
 	{
 		$scope.deviceInfoSend = $scope.deviceInfo
@@ -80,16 +81,18 @@ function mainController($scope, $http)
 			$scope.devices = data;
 			console.log(data);
 			
+			//load updated device after updated
 			var id = $scope.deviceInfo._id;
 			$scope.deviceInfo._id = null;
+			angular.element('.deviceInfoForm').css('display', 'none');
 			angular.forEach($scope.devices, function(device) 
 			{
 				if(device._id == id)
 				{
-					$scope.deviceInfo = device;
+					$scope.deviceInfo = angular.copy(device);
+					angular.element('.deviceInfoForm').css('display', 'block');
 				}
 			});
-			$scope.deviceInfo = $scope.devices.find({});
 
 		}).error(function(data) 
 		{
@@ -121,6 +124,37 @@ function mainController($scope, $http)
 			console.log(id);
 			$scope.areas = data;
 			console.log(data);
+			$scope.areaInfo = null;
+			angular.element('.areaInfoForm').css('display', 'none');
+		}).error(function(data) 
+		{
+			console.log('Error: ' + data);
+		});
+    };
+	
+	// update a area after checking it
+    $scope.updateArea = function() 
+	{
+		$scope.areaInfoSend = $scope.areaInfo
+        $http.put('/openApi/areas/areaUpdate/'+$scope.usertest._id+'/'+$scope.areaInfoSend._id, $scope.areaInfoSend).success(function(data) 
+		{
+			console.log($scope.areaInfo._id);
+			$scope.areas = data;
+			console.log(data);
+			
+			//load updated device after updated
+			var id = $scope.areaInfo._id;
+			$scope.areaInfo._id = null;
+			angular.element('.areaInfoForm').css('display', 'none');
+			angular.forEach($scope.areas, function(area) 
+			{
+				if(area._id == id)
+				{
+					$scope.areaInfo = angular.copy(area);
+					angular.element('.areaInfoForm').css('display', 'block');
+				}
+			});
+
 		}).error(function(data) 
 		{
 			console.log('Error: ' + data);
@@ -128,10 +162,23 @@ function mainController($scope, $http)
     };
 	
 	//Get device info on click
-	$scope.getInfo = function(device) 
+	$scope.getDeviceInfo = function(device) 
 	{
 			console.log(device._id);
-			$scope.deviceInfo = device;
+			$scope.deviceInfo = angular.copy(device);
+			angular.element('.areaInfoForm').css('display', 'none');
+			angular.element('.deviceInfoForm').css('display', 'block');
+
+			//device.document.getElementsByClassName("deviceInfoForm").style.visibility = "visible";
+    };
+	
+	//Get area info on click
+	$scope.getAreaInfo = function(area) 
+	{
+			console.log(area._id);
+			$scope.areaInfo = angular.copy(area);
+			angular.element('.deviceInfoForm').css('display', 'none');
+			angular.element('.areaInfoForm').css('display', 'block');
     };
 	
 	$scope.filterAreaExists = function(object) 
