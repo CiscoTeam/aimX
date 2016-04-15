@@ -81,23 +81,25 @@
 						<!-- gets root areas and populates them -->
 						<li ng-repeat="area in areas | filter:filterParentExists | orderBy: 'name'" ng-include="'tree_recursion.html'"></li>
 						<!-- gets devices not in a existing folder -->
-						<li id={{device._id}} draggable="true" ondragstart="drag(event)" ng-click="getInfo(device)" ng-repeat="device in devices | filter:filterAreaExists | orderBy: 'name'"><span class="glyphicon glyphicon-hdd"></span> {{device.name}}</li>
+						<li id={{device._id}} draggable="true" ondragstart="drag(event)" ng-click="getDeviceInfo(device)" ng-repeat="device in devices | filter:filterAreaExists | orderBy: 'name'"><span class="glyphicon glyphicon-hdd"></span> {{device.name}}</li>
 					</ul>
 				 	<!--<ul>--------------All Devices --------------
-						<li id={{device._id}} draggable="true" ondragstart="drag(event)" ng-repeat="device in devices" ng-click="getInfo(device)"><div ><span class="glyphicon glyphicon-file"></span>{{device.name}}</div></li>
+						<li id={{device._id}} draggable="true" ondragstart="drag(event)" ng-repeat="device in devices" ng-click="getDeviceInfo(device)"><div ><span class="glyphicon glyphicon-file"></span>{{device.name}}</div></li>
 					</ul>-->
 				</div>
 			</div>
 		</div>
-
+		<!-- Device Information -->
 		<div class="rightPanel col-sm-8 page content">
-	    	<div id="target" class="well" ondrop="drop(event)" ondragover="allowDrop(event)">
+	    	<div id="target" class="well">
 			    
-				<!--<div ng-repeat="device in devices | filter:{deviceType:'minecraft'}:true">-->
-				<h2>{{deviceInfo.name}}</h2>
-				<p>_id: {{deviceInfo._id}}<p>
+				<!-- Device Form -->
+				<div class="deviceInfoForm" style="display:none;">
+					<!--<div ng-repeat="device in devices | filter:{deviceType:'minecraft'}:true">-->
+					<h2><span class="glyphicon glyphicon-hdd"></span> <input type="text" ng-model="deviceInfo.name"></h2>
+					<p>_id: {{deviceInfo._id}}<p>
 					<form>
-							areaID: 
+							Area: 
 							<select name="area id's" ng-model="deviceInfo.areaID">
 								<option value="">No Area</option>
 								<option ng-repeat="area in areas" value="{{area._id}} " >{{area.name}}</option>
@@ -116,7 +118,28 @@
 						<button class="btn btn-primary" ng-click="updateDevice(deviceInfo._id)">Update</button>
 						<button class="btn btn-danger" ng-click="deleteDevice(deviceInfo._id)">Delete</button>
 					</form>
-					<br>				
+					<br>
+				</div>
+				
+				<!-- Area Form -->
+				<div class="areaInfoForm" style="display:none">
+					<!--<div ng-repeat="device in devices | filter:{deviceType:'minecraft'}:true">-->
+					<h2><span style="color:#337AB7" class="glyphicon glyphicon-folder-open"></span> <input type="text" ng-model="areaInfo.name"></h2>
+					<p>_id: {{areaInfo._id}}<p>
+					<form>
+							Parent Area: 
+							<select name="area id's" ng-model="areaInfo.parentID">
+								<option value="">No Area</option>
+								<option ng-repeat="area in areas | filter:{_id:'!' + areaInfo._id}:true" value="{{area._id}} " >{{area.name}}</option>
+							</select>
+						<div>
+							<button class="btn btn-primary" ng-click="updateArea(areaInfo._id)">Update</button>
+							<button class="btn btn-danger" ng-click="deleteArea(areaInfo._id)">Delete</button>
+						</div>
+					</form>
+					<br>
+				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -207,11 +230,12 @@
 
 	
 	<script type="text/ng-template"  id="tree_recursion.html">
-		<a class="area" data-toggle="collapse" data-target="#{{area._id}}" data-parent="#accordion"><span class="glyphicon glyphicon-folder-open"></span></a> {{area.name}} <!--<span class="glyphicon glyphicon-edit"></span>-->
+		<a class="area" data-toggle="collapse" data-target="#{{area._id}}" data-parent="#accordion"><span class="glyphicon glyphicon-folder-open"></span></a>
+		<a style="min-width:100px;height:20px"class="areaName" ng-click="getAreaInfo(area)"><span style="display:inline-block;min-width:20px;min-height:16px;"> {{area.name}} </span></a>
 		<!--<button class="btn btn-danger btn-sm" ng-click="deleteArea(area._id)">X</button>-->
 		<!--<button ng-click="delete(data)" ng-show="data.nodes.length > 0">Delete nodes</button>-->
 		<ul class="collape in" id={{area._id}} >
-			<li id={{device._id}} draggable="true" ondragstart="drag(event)" ng-click="getInfo(device)" ng-repeat="device in devices | filter:{areaID:area._id}:true | orderBy: 'name'"><span class="glyphicon glyphicon-hdd"></span> {{device.name}}</li>
+			<li id={{device._id}} draggable="true" ondragstart="drag(event)" ng-click="getDeviceInfo(device)" ng-repeat="device in devices | filter:{areaID:area._id}:true | orderBy: 'name'"><span class="glyphicon glyphicon-hdd"></span> {{device.name}}</li>
 			<li ng-repeat="area in areas | filter:{parentID:area._id}:true | orderBy: 'name'" ng-include="'tree_recursion.html'"></li>
 		</ul>
 	</script>
