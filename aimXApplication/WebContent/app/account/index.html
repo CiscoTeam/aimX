@@ -48,22 +48,32 @@
 		<div class="flash-message" ng-if="flash">
             <div class="{{'alert alert-' + flash.type}}" ng-bind="flash.message"></div>
         </div>
-		<form method="post">
-			<div class="form-group">
-				<label for="firstName">First name</label>
-				<input type="text" id="firstName" class="form-control" ng-model="account.user.firstName" required />
+		  
+		  input:focus + [role="tooltip"] {
+		  	display: block;
+		  	position: absolute;
+		  	top: 100%;
+	     <form role="form" aria-label="Contact Form" id="contact-form" name="contactForm" method="post" action="">
+	       <div class="form-group">
+	         <label for="firstName">First Name *</label>
+	         <input type="text" aria-required="true" id="firstName" aria-describedby="firstName-tip" class="form-control" ng-model="account.user.firstName"/>
+				<div role="tooltip" id="firstName-tip">i.e. John, Jane</div>
 			</div>
 			<div class="form-group">
 				<label for="lastName">Last name</label>
-				<input type="text" id="lastName" class="form-control" ng-model="account.user.lastName" required />
+				<input type="text" aria-required="true" id="lastName" aria-describedby="lastName-tip" class="form-control" ng-model="account.user.lastName"/>
+				<div role="tooltip" id="lastName-tip">i.e. Doe</div>
 			</div>
 			<div class="form-group">
 				<label for="username">Username</label>
-				<input type="text" id="username" class="form-control" ng-model="account.user.username" required />
+				<input type="text" aria-required="true" id="username" aria-describedby="userName-tip" class="form-control" ng-model="account.user.username"/>
+				<div role="tooltip" id="userName-tip">The username you used to create your account</div>
 			</div>
+
 			<div class="form-group">
 				<label for="password">Password</label>
-				<input type="password" id="password" class="form-control" ng-model="account.user.password" />
+				<input type="password" id="password" aria-describedby="password-tip" class="form-control" ng-model="account.user.password" />
+				<div role="tooltip" id="password-tip">The password you used to create your account</div>
 			</div>
 			<div class="form-group">
 				<button class="btn btn-primary" ng-click="account.saveUser()">Update</button>
