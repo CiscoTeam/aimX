@@ -61,3 +61,14 @@ a.areaName {
 	overflow: auto;
 	max-height: 500px;
 }
+
+input:focus + [role='tooltip'] 
+{
+				display: block;
+				//position: absolute;
+				//top: 100%;
+}
+input + [role='tooltip']
+{
+	display: none;
+}
