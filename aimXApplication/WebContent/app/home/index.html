@@ -19,22 +19,22 @@
 	
 </head>
 
-<body >
-    <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>-->
+<body  ng-app="app">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
 	
 	<nav ng-controller="Nav.IndexController as loginInfo" class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				
 				<a class="navbar-brand" >aimX</a>
-				<button aria-expanded="false" role=navigation type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<button aria-expanded="false" role="navigation" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
 			</div>
 			<div class="collapse navbar-collapse"  id="myNavbar">
-				<ul role=navigation class="nav navbar-nav">
+				<ul role="navigation" class="nav navbar-nav">
 					<li class="active"><a href="../home">Home</a></li>
 					<li><a href="../floorPlan">Floor Plan</a></li>
 					<li><a href="../devices">Devices</a></li>
@@ -49,7 +49,7 @@
 	</nav>
 	
 <!--a aria-expanded="true" id="TLink1" href="#" onclick="toggle('navbar', 'TLink1')">Navigation Bar</a>
-	    <ul role=navigation id="navbar">
+	    <ul role="navigation" id="navbar">
 	    					<li class="active"><a href="home/">Home</a></li>
 	    					<li><a href="../floorPlan">Floor Plan</a></li>
 	    					<li><a href="../devices">Devices</a></li>
@@ -77,12 +77,12 @@
 	if (n.style.display != 'none') 
 	  {
 	  n.style.display = 'none';
-      document.getElementById(id2).setAttribute('aria-expanded', 'false');
+      document.getElementById(id2).setAttribute('aria-expanded'="false");
   }
   else
   {
   n.style.display = '';
-  document.getElementById(id2).setAttribute('aria-expanded', 'true');
+  document.getElementById(id2).setAttribute('aria-expanded'="true"");
 	  }
   }
 </script>
@@ -116,8 +116,6 @@
 	<!-- external scripts -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
-	
-	
 	
     <!-- application scripts -->
 	<script src="../app.js"></script>
