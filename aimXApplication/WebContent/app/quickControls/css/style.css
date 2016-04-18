@@ -27,45 +27,58 @@ html {
 	height: 100%;
 }
 body {
-	padding: 1em 2em;
+	//padding: 1em 2em;
 	margin: 0;
-	font-family: "Helvetica Neue", "Roboto Light", "Segoe UI Web Light", "Segoe UI Light", "Segoe UI Web Regular", "Segoe UI", Helvetica, Arial, sans-serif; 
+	//font-family: "Helvetica Neue", "Roboto Light", "Segoe UI Web Light", "Segoe UI Light", "Segoe UI Web Regular", "Segoe UI", Helvetica, Arial, sans-serif; 
 	color: #fff;
-	background: #1c2831 url(../media/bg.png) 0 0 no-repeat;
-	background-size: 800px;
+	//background: #1c2831 url(../media/bg.png) 0 0 no-repeat;
+	//background-size: 800px;
 }
+
+div {
+	color: #000000;
+}
+
 a {
 	color: #ce1126;
 }
-header {
-  
-}
+
+
 h1, h2, h3 {
 	margin: 0;
-	color: #555;
+	color: #000000;
 	text-rendering: optimizeLegibility;
 }
+
 h1 {
-	font-size: 3.25em;
+	fontize: 3.25em;
 	margin: 0;
 	font-weight: normal;
 }
+
+/*
 h2 {
 	font-size: 1.2em;
 	text-transform: uppercase;
 	font-weight: normal;
 }
+
 p, footer {
 	margin: 1em 0 .5em;
 }
+
+
 footer {
 	clear: both;
 	text-align: right;
 	margin-top: 4em;
 }
+
+
 footer .credit {
 	font-size: .8em;
 }
+*/
 
 /* Layout */
 
@@ -75,7 +88,7 @@ header {
 	line-height: 50px;
 	font-weight: 100;
 	letter-spacing: 2px;
-	color: #bbe4fd;
+	color: #000000;
 }
 header img {
 	width: 30px;
@@ -88,10 +101,13 @@ header img {
 }
 
 .container {
-	margin-top: 3em;
+	//margin-top: 3em;
 }
 .pref-container {
 	margin-bottom: 2em;
+}
+.pref-container h2{
+	margin-bottom: 5px;
 }
 .temp-hum-display {
 	margin-bottom: 2em;
@@ -111,7 +127,7 @@ header img {
 .wet::after {
 	content: "\f043";
 	padding-left: 10px;
-	color: #bbe4fd;
+	color: #009999;
 }
 
 @media (min-width: 768px) {
@@ -136,7 +152,7 @@ header img {
 	}
 	.temp, .hum {      
 		font-size: 160px;
-		opacity: 0.2;
+		color: #aaaaaa;
 	}
 	.hum {
 		position: relative;
@@ -146,7 +162,7 @@ header img {
 		font-size: 0.5em;
 		vertical-align: top;
 		position: relative;
-	  top: 26px;
+	  	top: 26px;
 	}
 }
 @media (min-width: 1024px) {
@@ -177,8 +193,15 @@ header img {
 }
 .preference {
 	margin-bottom: 2em;
-	border: 1px solid rgba(192, 192, 192, 0.15);
-	border-radius: 8px;
+	//border: 10px solid rgba(192, 192, 192, 0.15);
+	//border-radius: 8px;
+	border-style: solid;
+	border-width: 9px;
+	border-color: #000000;
+	border-radius: 10px;
+	background-color: #E9E9E9;
+	padding: 5px 5px;
+	box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 40px 0 rgba(0, 0, 0, 0.19);
 	min-height: 90px;
 	font-size: 1rem;
 }
@@ -204,7 +227,7 @@ header img {
 	position: relative;
 }
 .preference > div:not(:last-child) {
-	border-bottom: 1px rgba(192, 192, 192, 0.15) solid;
+	border-bottom: 5px rgba(192, 192, 192, 1) solid;
 }
 .preference > div > div {
 	width: 100%;
@@ -232,7 +255,7 @@ label.brightness::after {
 	position: absolute;
 	right: -3px;
 	top: 17px;
-	color: #C9B559;
+	color: #ffff00;
 }
 label.fire::before {
 	content: "\f06d";
