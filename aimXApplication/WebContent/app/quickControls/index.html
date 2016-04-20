@@ -24,6 +24,8 @@
 </head>
 
 <body>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+
 	<!-- Google Tag Manager -->
 	<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PZWSZ2"
 	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -58,18 +60,27 @@
 			</div>
 		</div>
 	</nav>
+	
 
 	<div class="pubnub"></div>
-
-	<div class="container">
-
+<div class="container">
 		<section class="temp-hum-display">
 			<section class="temp-container">
-				<div class="temp" data-temperature="24"><span>℃</span></div>
+				<div ng-controller="dateController">
+		<p>{{CurrentDate | date: 'MMMM dd, yyyy'}} 
+ {{CurrentDate | date:'hh:mm a'}}</p>
+	</div>
+	
+						<div ng-controller="tempCtrl">
+            <h1>Forecast For: {{ place.location.city }}</h1>
+		            <h2>Current: {{ place.item.condition.text }} | {{ place.item.condition.temp }}&deg; <img src="http://l.yimg.com/a/i/us/we/52/{{place.item.condition.code}}.gif"/></h2>
+</div>
+
 			</section>
 			<section class="hum-container">
-				<div class="hum" data-humidity="45"><span class="fa wet"> &#37;</span></div>
+				
 			</section>
+					<label for="door">
 		</section>
 
 		<section class="pref-container">
@@ -77,7 +88,6 @@
 			<section class="preference">
 				<div>
 					<div class="caption">Front Door</div>
-					<label for="door">
 						<input id="door" type="checkbox">
 						<div class="toggle-button">
 								<div class="switch"></div>
@@ -122,13 +132,13 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
 	<script src="http://cdn.pubnub.com/pubnub-3.7.11.min.js"></script>
 
-    <!-- application scripts -->
-    <script src="../app.js"></script>
+    <!-- application scripts --> 
+	<script src="../app.js"></script>
+	<script src="dateController.js"></script>
+	<script src="tempController.js"></script>
 	<script src="js/index.controller.js"></script>
-	<script src="js/quickControls.js"></script>
-    <script src="../app-services/user.service.js"></script>
-    <script src="../app-services/flash.service.js"></script>
-
-
-</body>
+	<script src="../app-services/user.service.js"></script> 
+	<script src="../app-services/flash.service.js"></script>
+	<script src="js/quickControls.js"></script> 
+	</body>
 </html>
