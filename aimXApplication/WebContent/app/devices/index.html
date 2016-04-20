@@ -17,7 +17,7 @@
 	
   	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-    <script src="devices.js"></script>
+    <!--<script src="devices.js"></script>-->
 	
 	
 		<!-- external scripts -->
@@ -31,7 +31,8 @@
 	<script src="../app-js/devices.db.js"></script>
     <script src="index.controller.js"></script>
 	
-
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 	
 	
 </head>
@@ -98,24 +99,26 @@
 				<div class="deviceInfoForm" style="display:none;">
 					<!--<div ng-repeat="device in devices | filter:{deviceType:'minecraft'}:true">-->
 					<h2><span class="glyphicon glyphicon-hdd"></span> <input type="text" ng-model="deviceInfo.name"></h2>
-					<p>_id: {{deviceInfo._id}}<p>
+					<div><label>_id: </label>  {{deviceInfo._id}}</div>
+					<div><label>Type: </label>  {{deviceInfo.deviceType}}</div>
 					<form>
-							Area: 
+							<label>Area: </label> 
 							<select name="area id's" ng-model="deviceInfo.areaID">
 								<option value="">No Area</option>
 								<option ng-repeat="area in areas" value="{{area._id}} " >{{area.name}}</option>
 							</select>
 							 
 							<div>
-							state:
+							<label>state: </label>
 								<input type="number" ng-model="deviceInfo.state">
 							</div>
 							
-						<p>---Attributes in Json---</p>
+							
+						<!--<p>---Attributes in Json---</p>
 						<div ng-repeat="(attribute,value) in deviceInfo">
 							{{attribute}}: 
 							<input type="text" ng-model="deviceInfo[attribute]">
-						</div>
+						</div>-->
 						<button class="btn btn-primary" ng-click="updateDevice(deviceInfo._id)">Update</button>
 						<button class="btn btn-danger" ng-click="deleteDevice(deviceInfo._id)">Delete</button>
 					</form>
@@ -126,9 +129,9 @@
 				<div class="areaInfoForm" style="display:none">
 					<!--<div ng-repeat="device in devices | filter:{deviceType:'minecraft'}:true">-->
 					<h2><span style="color:#337AB7" class="glyphicon glyphicon-folder-open"></span> <input type="text" ng-model="areaInfo.name"></h2>
-					<p>_id: {{areaInfo._id}}<p>
+					<div><label>_id: </label> {{areaInfo._id}}</div>
 					<form>
-							Parent Area: 
+							<label>Parent Area: </label>
 							<select name="area id's" ng-model="areaInfo.parentID">
 								<option value="">No Area</option>
 								<option ng-repeat="area in areas | filter:{_id:'!' + areaInfo._id}:true" value="{{area._id}} " >{{area.name}}</option>

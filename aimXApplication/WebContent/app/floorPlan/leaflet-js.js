@@ -82,6 +82,7 @@ function allowDrop(ev) {
 
 function dropOnMap(ev)
 {
+	
 	ev.preventDefault();
 	var data = ev.dataTransfer.getData("text");
 	console.log("created: "+data);

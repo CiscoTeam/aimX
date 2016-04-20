@@ -90,6 +90,6 @@ function updateDevice(req, res)
 				res.send(err)
 			res.json(devices);
 		});
-		
 	});
 }
+
