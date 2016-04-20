@@ -1,13 +1,54 @@
 'use strict';
 var test = angular.module('app').controller('main.IndexController', mainController);
 
+
 function mainController($scope, $http) 
 {
 
     $scope.formDeviceData = {areaID:''};
 	$scope.formAreaData = {parentID:''};
 	$scope.areas;
+	
+	var socket = io();
+	socket.on('dbUpdate', function (data) {  
+		reloadDB();
+	});
 
+	function reloadDB()
+	{
+		$http.get('/api/users/current').success(function(data) 
+		{
+			$scope.usertest = data;
+			//console.log(data);
+		
+			//get all devices
+			$http.get('/openApi/devices/device/'+$scope.usertest._id).success(function(data) 
+			{
+				$scope.devices = data;
+				//console.log(data);
+			})
+			.error(function(data) 
+			{
+				console.log('Error: ' + data);
+			});
+			
+			//get all areas
+			$http.get('/openApi/areas/area/'+$scope.usertest._id).success(function(data) 
+			{
+				$scope.areas = data;
+				//console.log(data);
+			})
+			.error(function(data) 
+			{
+				console.log('Error: ' + data);
+			});
+			
+		})
+		.error(function(data) {
+			console.log('Error: ' + data);
+		});	
+		
+	}
 	//when loading page get user ID
 	$http.get('/api/users/current').success(function(data) 
 	{

@@ -46,6 +46,7 @@
 		<h2>My Account</h2>
 	</div>
 	<div  class="container page-content">
+		<label>ownerID: </label> {{account.user._id}}
 		<div class="flash-message" ng-if="flash">
             <div class="{{'alert alert-' + flash.type}}" ng-bind="flash.message"></div>
         </div>
