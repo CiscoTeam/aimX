@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Contact</title>
+	
+	<!-- Bootstrap core CSS -->
+    <link href="/bootstrapCSS" rel="stylesheet">
+    <link href="/bootstrapCSSIE10" rel="stylesheet">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<script src="/bootstrapJS"></script>
+    <script src="/bootstrapJSIE10"></script>
+
+	<!-- stylesheets (last so they take priority) -->
+	<link rel="stylesheet" type="text/css" href="../style.css" />
+	<link rel="stylesheet" type="text/css" href="contact-style.css" />
+	
+</head>
+
+<body  ng-app="app">
+    <h1> Contact </h1>
+
+    <div class="info">
+		<p>For any assistance, please contact us.</p>
+	    <p>Members:</p> 
+	    <pre id="tab">
+		    <p>Bryan Duarte	Email: bjduarte@asu.edu</p>
+		    <p>Christopher Carpenter   Email: cacarpe1@asu.edu</p>
+		    <p>Jaime J Rabago   Email: Jaime.Rabago@asu.edu</p>
+		    <p>Vincent Goh   Email: vgoh1@asu.edu</p>
+		</pre>
+	</div>
+
+	<div class="text-center" >
+		<button class="btn btn-primary"onclick="goBack()">Go Back</button>
+	</div>
+
+	<script>
+		function goBack() {
+		    window.history.back();
+		}
+	</script>
+
+	
+	<footer class="footer">
+		<p>Team Cisco 2016 ASU Senior Capstone Project</p>	
+	</footer>
+
+</body>
+</html>
