@@ -18,6 +18,7 @@
             });
         }
     }
+<<<<<<< HEAD:aimXApplication/WebContent/app/quickControls/index.controller.js
     if (navigator.geolocation) { console.log('Geolocation is supported!');}
     else { console.log('Geolocation is not supported for this Browser/OS version yet.'); }
     window.onload = function() {
@@ -29,3 +30,8 @@
             });
     };
 })();
+=======
+})();
+
+
+>>>>>>> e82bdf1738e072389a5e40d64aeead85dc406b27:aimXApplication/WebContent/app/quickControls/js/index.controller.js

@@ -1,7 +1,17 @@
+
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 	<title>Quick Controls</title>
+=======
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<title>Quick Controls by aimX</title>
+	<meta name="description" content="home automation">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+>>>>>>> e82bdf1738e072389a5e40d64aeead85dc406b27
 
 	<!-- Bootstrap core CSS -->
     <link href="/bootstrapCSS" rel="stylesheet">
@@ -13,22 +23,34 @@
 
 	<!-- stylesheets (last so they take priority) -->
 	<link rel="stylesheet" type="text/css" href="../style.css" />
-	<link rel="stylesheet" type="text/css" href="quickControls-style.css" />
+	<link rel="stylesheet" type="text/css" href="css/quickControls-style.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
+	<!-- Google Tag Manager -->
+	<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PZWSZ2"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-PZWSZ2');</script>
+	<!-- End Google Tag Manager -->
+
 	<nav ng-controller="Nav.IndexController as loginInfo" class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				
+				<a class="navbar-brand" style="color:#ffffff">aimX</a>
+				<button aria-expanded="false" role="navigation" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">aimX</a>
 			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav">
+			<div class="collapse navbar-collapse"  id="myNavbar">
+				<ul role="navigation" class="nav navbar-nav">
 					<li><a href="../home">Home</a></li>
 					<li><a href="../floorPlan">Floor Plan</a></li>
 					<li><a href="../devices">Devices</a></li>
@@ -41,7 +63,11 @@
 			</div>
 		</div>
 	</nav>
+
+	<div class="pubnub"></div>
+
 	<div class="container">
+<<<<<<< HEAD
 		<h2>Quick Controls</h2>
 	</div>
 	<div class="container page-content">
@@ -98,6 +124,57 @@
 				<button type="button" class="btn btn-primary">Button 8</button>
 			</div>
 		</div>
+=======
+
+		<section class="temp-hum-display">
+			<section class="temp-container">
+				<div class="temp" data-temperature="24"><span>℃</span></div>
+			</section>
+			<section class="hum-container">
+				<div class="hum" data-humidity="45"><span class="fa wet"> &#37;</span></div>
+			</section>
+		</section>
+
+		<section class="pref-container">
+			<h2>Quick Controls</h2>
+			<section class="preference">
+				<div>
+					<div class="caption">Front Door</div>
+					<label for="door">
+						<input id="door" type="checkbox">
+						<div class="toggle-button">
+								<div class="switch"></div>
+						</div>
+					</label>
+				</div>
+
+				<div>
+					<div class="caption">Living Room Light</div>
+					<label for="light-living" class="brightness fa">
+						<input id="lightLiving" type="range" min="0" max="10" step="1" value="0">
+					</label>
+				</div>
+				
+				<div>
+					<div class="caption">Porch Light</div>
+					<label for="light-porch" class="brightness fa">
+						<input id="lightPorch" type="range" min="0" max="10" step="1" value="0">
+					</label>
+				</div>
+
+				<div>
+				<!-- flickering light -->
+					<div class="caption">Fireplace</div>
+					<label for="light-cave" class="brightness fire fa">
+						<input id="fireplace" type="range" min="0" max="10" step="1" value="0">
+					</label>
+				</div>
+
+			</section>
+
+		</section>
+
+>>>>>>> e82bdf1738e072389a5e40d64aeead85dc406b27
 	</div>
 
 	<div id="tripmeter">
@@ -108,17 +185,22 @@
 </div>
 
 	<footer class="footer">
-		<p>Team Cisco 2016 ASU Senior Capstone Project</p>
+		<p><a href="../about">About</a> | <a href="../contact">Contact</a></p>
+		<p>Team Cisco 2016 ASU Senior Capstone Project</p>	
 	</footer>
 
     <!-- external scripts -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+	<script src="http://cdn.pubnub.com/pubnub-3.7.11.min.js"></script>
 
     <!-- application scripts -->
     <script src="../app.js"></script>
+	<script src="js/index.controller.js"></script>
+	<script src="js/quickControls.js"></script>
     <script src="../app-services/user.service.js"></script>
     <script src="../app-services/flash.service.js"></script>
-    <script src="index.controller.js"></script>
+
+
 </body>
 </html>

@@ -5,6 +5,10 @@
 	margin: 20px;
 }
 
+ul
+{
+	list-style-type: none;
+}
 
 /* 2nd level 
 .tree > li > label {
