@@ -13,7 +13,7 @@ var Area = mongoose.model('area', {
 router.post('/area/:userID', postArea);
 router.get('/area/:userID', getAreas);
 router.delete('/area/:userID/:_id', deleteArea);
-
+router.put('/areaUpdate/:userID/:_id', updateArea);
 
 module.exports = router;
 
@@ -78,3 +78,21 @@ function deleteArea(req, res)
 		});
 	});
 };
+
+//update area and send back data
+function updateArea(req, res)
+{
+	Area.findOneAndUpdate({_id : req.params._id}, req.body, function(err, areas) 
+	{
+		if (err) 
+			res.send(err);
+		// get and return all the areas after you updated another
+		Area.find({userID : req.params.userID}, function(err, areas) 
+		{
+			if (err)
+				res.send(err)
+			res.json(areas);
+		});
+		
+	});
+}

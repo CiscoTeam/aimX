@@ -9,8 +9,8 @@ var image = L.imageOverlay('test_map_full.png', bounds).addTo(map);
 map.fitBounds(bounds);
 
 var iconDefault = L.icon({
-	iconUrl: 'marker2.png',
-    shadowUrl: 'iconShadow.png',
+	iconUrl: 'icons/marker2.png',
+    shadowUrl: 'icons/iconShadow.png',
     iconSize:     [20, 35], // size of the icon
     shadowSize:   [20, 35], // size of the shadow
     iconAnchor:   [10, 34], // point of the icon which will correspond to marker's location
@@ -20,8 +20,8 @@ var iconDefault = L.icon({
 });
 
 var iconLightOff = L.icon({
-    iconUrl: 'lightBulb_off.png',
-    shadowUrl: 'iconShadow.png',
+    iconUrl: 'icons/lightBulb_off.png',
+    shadowUrl: 'icons/iconShadow.png',
     iconSize:     [20, 35], // size of the icon
     shadowSize:   [20, 35], // size of the shadow
     iconAnchor:   [10, 34], // point of the icon which will correspond to marker's location
@@ -31,8 +31,8 @@ var iconLightOff = L.icon({
 });
 
 var iconLightOn = L.icon({
-    iconUrl: 'lightBulb_on.png',
-    shadowUrl: 'iconShadow.png',
+    iconUrl: 'icons/lightBulb_on.png',
+    shadowUrl: 'icons/iconShadow.png',
     iconSize:     [20, 35], // size of the icon
     shadowSize:   [20, 35], // size of the shadow
     iconAnchor:   [10, 34], // point of the icon which will correspond to marker's location
@@ -82,6 +82,7 @@ function allowDrop(ev) {
 
 function dropOnMap(ev)
 {
+	
 	ev.preventDefault();
 	var data = ev.dataTransfer.getData("text");
 	console.log("created: "+data);

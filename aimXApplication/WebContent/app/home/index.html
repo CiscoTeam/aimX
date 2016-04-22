@@ -19,22 +19,22 @@
 	
 </head>
 
-<body >
-    <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>-->
+<body>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
 	
 	<nav ng-controller="Nav.IndexController as loginInfo" class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				
-				<a class="navbar-brand" >aimX</a>
-				<button aria-expanded="false" role=navigation type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<a class="navbar-brand" style="color:#ffffff" >aimX</a>
+				<button aria-expanded="false" role="navigation" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
 			</div>
 			<div class="collapse navbar-collapse"  id="myNavbar">
-				<ul role=navigation class="nav navbar-nav">
+				<ul role="navigation" class="nav navbar-nav">
 					<li class="active"><a href="../home">Home</a></li>
 					<li><a href="../floorPlan">Floor Plan</a></li>
 					<li><a href="../devices">Devices</a></li>
@@ -48,63 +48,7 @@
 		</div>
 	</nav>
 	
-	
-	
-<!--<a aria-expanded="true" id="TLink1" href="#" onclick="toggle('navbar', 'TLink1')">Navigation Bar</a>
-	    <ul role=navigation id="navbar">
-	    					<li class="active"><a href="home/">Home</a></li>
-	    					<li><a href="../floorPlan">Floor Plan</a></li>
-	    					<li><a href="../devices">Devices</a></li>
-	    					<li><a href="../quickControls">Quick Controls</a></li>
-	    </ul>	  
-</nav>
-
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../account">Welcome {{loginInfo.user.firstName}}</a></li>
-					<li><a href="/login"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-				</ul>
-</nav>-->
-
-<style type="text/css" media="screen">
-#navbar li, #navbar2 li {
-  display: inline;
-  list-style-type: none;
-  padding-right: 20px;
-}
-</style>
-
-<script type="text/javascript">
-  function toggle(id, id2) {
-    var n = document.getElementById(id);
-	if (n.style.display != 'none') 
-	  {
-	  n.style.display = 'none';
-      document.getElementById(id2).setAttribute('aria-expanded', 'false');
-  }
-  else
-  {
-  n.style.display = '';
-  document.getElementById(id2).setAttribute('aria-expanded', 'true');
-	  }
-  }
-</script>
-
-	<div ng-controller="dateController">
-	<strong>Current date and time</strong>
-		<p>{{CurrentDate | date: 'MMMM dd, yyyy'}} 
- {{CurrentDate | date:'hh:mm a'}}</p>
-	</div>
-
-          <div ng-controller="tempCtrl">
-            <h1>Forecast For: {{ place.location.city }}</h1>
-            <h2>Current: {{ place.item.condition.text }} | {{ place.item.condition.temp }}&deg; <img src="http://l.yimg.com/a/i/us/we/52/{{place.item.condition.code}}.gif"/></h2>
-</div>
-
-	<div class="container">
-		<h2>Home</h2>
-	</div>
-	
-	<div class="text-center container page-content text-center">
+		<div class="text-center container page-content text-center">
 		<button href="#" type="button" class="btn btn-primary">Add Devices</button>
 		<a href="../floorPlan" class="btn btn-primary">Floor Plan</a>
 		<a href="../devices" type="button" class="btn btn-primary">Device View</a>
@@ -112,25 +56,21 @@
 	</div>
 	
 	<footer class="footer">
-		<p>Team Cisco 2016 ASU Senior Capstone Project</p>
+		<p><a href="../about">About</a> | <a href="../contact">Contact</a></p>
+		<p>Team Cisco 2016 ASU Senior Capstone Project</p>	
 	</footer>
 	
 	<!-- external scripts -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
 	
-	
-	
     <!-- application scripts -->
 	<script src="../app.js"></script>
-	<script src="dateController.js"></script>
-	<script src="tempController.js"></script>
-    <script src="../app-services/user.service.js"></script>
-    <script src="../app-services/flash.service.js"></script>
+	<script src="index.controller.js"></script>
+	<script src="../app-services/flash.service.js"></script>
+	<script src="../app-services/user.service.js"></script> 
+
 	<!--<script src="../app-js/devices.db.js"></script>-->
-    <script src="index.controller.js"></script>
-	
 
-
-</body>
+	</body>
 </html>

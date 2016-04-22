@@ -18,22 +18,23 @@
 	<nav ng-controller="Nav.IndexController as loginInfo" class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				
+				<a class="navbar-brand" style="color:#ffffff" >aimX</a>
+				<button aria-expanded="false" role="navigation" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
-					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">aimX</a>
 			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav">
+			<div class="collapse navbar-collapse"  id="myNavbar">
+				<ul role="navigation" class="nav navbar-nav">
 					<li><a href="../home">Home</a></li>
 					<li><a href="../floorPlan">Floor Plan</a></li>
 					<li><a href="../devices">Devices</a></li>
 					<li><a href="../quickControls">Quick Controls</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../account"><span class="glyphicon glyphicon-user"></span> Welcome {{account.user.firstName}}</a></li>
+					<li class="active"><a href="../account"><span class="glyphicon glyphicon-user"></span> Welcome {{loginInfo.user.firstName}}</a></li>
 					<li><a href="/login"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</ul>
 			</div>
@@ -45,25 +46,31 @@
 		<h2>My Account</h2>
 	</div>
 	<div  class="container page-content">
+		<label>ownerID: </label> {{account.user._id}}
 		<div class="flash-message" ng-if="flash">
             <div class="{{'alert alert-' + flash.type}}" ng-bind="flash.message"></div>
         </div>
-		<form method="post">
-			<div class="form-group">
-				<label for="firstName">First name</label>
-				<input type="text" id="firstName" class="form-control" ng-model="account.user.firstName" required />
+	     <form role="form" aria-label="Contact Form" id="contact-form" name="contactForm" method="post" action="">
+	       <div class="form-group">
+	         <label for="firstName">First Name *</label>
+	         <input type="text" aria-required="true" id="firstName" aria-describedby="firstName-tip" class="form-control" ng-model="account.user.firstName"/>
+				<div role="tooltip" id="firstName-tip">i.e. John, Jane</div>
 			</div>
 			<div class="form-group">
 				<label for="lastName">Last name</label>
-				<input type="text" id="lastName" class="form-control" ng-model="account.user.lastName" required />
+				<input type="text" aria-required="true" id="lastName" aria-describedby="lastName-tip" class="form-control" ng-model="account.user.lastName"/>
+				<div role="tooltip" id="lastName-tip">i.e. Doe</div>
 			</div>
 			<div class="form-group">
 				<label for="username">Username</label>
-				<input type="text" id="username" class="form-control" ng-model="account.user.username" required />
+				<input type="text" aria-required="true" id="username" aria-describedby="userName-tip" class="form-control" ng-model="account.user.username"/>
+				<div role="tooltip" id="userName-tip">The username you used to create your account</div>
 			</div>
+
 			<div class="form-group">
 				<label for="password">Password</label>
-				<input type="password" id="password" class="form-control" ng-model="account.user.password" />
+				<input type="password" id="password" aria-describedby="password-tip" class="form-control" ng-model="account.user.password" />
+				<div role="tooltip" id="password-tip">The password you used to create your account</div>
 			</div>
 			<div class="form-group">
 				<button class="btn btn-primary" ng-click="account.saveUser()">Update</button>
