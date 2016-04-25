@@ -3,21 +3,21 @@
 <head>
 	<title>Floor Plan</title>
 
-<script>
-function allowDrop(ev) {
-    ev.preventDefault();
-}
+	<script>
+		function allowDrop(ev) {
+			ev.preventDefault();
+		}
 
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-}
+		function drag(ev) {
+			ev.dataTransfer.setData("text", ev.target.id);
+		}
 
-function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
-}
-</script>
+		function drop(ev) {
+			ev.preventDefault();
+			var data = ev.dataTransfer.getData("text");
+			ev.target.appendChild(document.getElementById(data));
+		}
+	</script>
 
 	
 	<!-- Bootstrap core CSS -->
@@ -34,9 +34,17 @@ function drop(ev) {
 	<link rel="stylesheet" type="text/css" href="../devices/devices-style.css" />
 	
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+
+	
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+
+
 	
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+	
+
 </head>
 
 <body ng-controller="main.IndexController as mainController">
@@ -84,6 +92,7 @@ function drop(ev) {
 				<img id="drag01" draggable="true" class="drag dragTest" ondragstart="drag(event)" type="tree" src="icons/lightBulb_off.png" alt="TREE: green" />
 				<img id="drag02" draggable="true" class="drag dragTest" ondragstart="drag(event)" type="tree2" src="icons/lightBulb_on.png" alt="TREE: green2" />
 				
+
 				<!--<div id="drag" draggable="true" ondragstart="drag(event)">drag me!</div>
 				<div id="drag2" draggable="true" ondragstart="drag(event)">drag me! also</div>-->
 			</div>
@@ -106,7 +115,7 @@ function drop(ev) {
 						<!-- gets root areas and populates them -->
 						<li ng-repeat="area in areas | filter:filterParentExists | orderBy: 'name'" ng-include="'tree_recursion.html'"></li>
 						<!-- gets devices not in a existing folder -->
-						<li id={{device._id}} draggable="true" ondragstart="drag(event)" ng-click="getInfo(device)" ng-repeat="device in devices | filter:filterAreaExists | orderBy: 'name'"><span class="glyphicon glyphicon-hdd"></span> {{device.name}}</li>
+						<li id={{device._id}} draggable="true" ondragstart="drag(event)" ng-click="locateDevice(device)" ng-repeat="device in devices | filter:filterAreaExists | orderBy: 'name'"><span class="glyphicon glyphicon-hdd"></span> {{device.name}}</li>
 					</ul>
 				 	<!--<ul>--------------All Devices --------------
 						<li id={{device._id}} draggable="true" ondragstart="drag(event)" ng-repeat="device in devices" ng-click="getInfo(device)"><div ><span class="glyphicon glyphicon-file"></span>{{device.name}}</div></li>
@@ -188,21 +197,21 @@ function drop(ev) {
 	</div>
 	
 	<script type="text/ng-template"  id="tree_recursion.html">
-		<a class="area" data-toggle="collapse" data-target="#{{area._id}}" data-parent="#accordion"><span class="glyphicon glyphicon-folder-open"></span></a> {{area.name}} <!--<span class="glyphicon glyphicon-edit"></span>-->
+		<a class="area" data-toggle="collapse" data-target="#{{area._id}}" data-parent="#accordion"><span class="glyphicon glyphicon-folder-open"></span></a>
+		<a style="min-width:100px;height:20px"class="areaName" ng-click="locateArea(area)"><span style="display:inline-block;min-width:20px;min-height:16px;"> {{area.name}} </span></a>
 		<!--<button class="btn btn-danger btn-sm" ng-click="deleteArea(area._id)">X</button>-->
 		<!--<button ng-click="delete(data)" ng-show="data.nodes.length > 0">Delete nodes</button>-->
 		<ul class="collape in" id={{area._id}} >
-			<li id={{device._id}} draggable="true" ondragstart="drag(event)" ng-click="getInfo(device)" ng-repeat="device in devices | filter:{areaID:area._id}:true | orderBy: 'name'"><span class="glyphicon glyphicon-hdd"></span> {{device.name}}</li>
+			<li id={{device._id}} draggable="true" ondragstart="drag(event)" ng-click="locateDevice(device)" ng-repeat="device in devices | filter:{areaID:area._id}:true | orderBy: 'name'"><span class="glyphicon glyphicon-hdd"></span> {{device.name}}</li>
 			<li ng-repeat="area in areas | filter:{parentID:area._id}:true | orderBy: 'name'" ng-include="'tree_recursion.html'"></li>
 		</ul>
 	</script>
 	
 	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
-	<script src="leaflet-js.js"></script>
+	<script src="leaflet-js.js"></script><!---->
 	
 	<!-- external scripts -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+
 
     <!-- application scripts -->
     <script src="../app.js"></script>
