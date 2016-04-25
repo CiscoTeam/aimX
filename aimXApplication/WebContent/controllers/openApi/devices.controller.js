@@ -8,6 +8,9 @@ var Device = mongoose.model('device', {
 		userID : String,
 		areaID : String,
 		state : Number,
+		floorPlanX: Number,
+		floorPlanY: Number,
+		deviceImage: [String],
 });
 
 

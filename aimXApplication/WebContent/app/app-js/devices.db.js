@@ -8,7 +8,7 @@ function mainController($scope, $http)
     $scope.formDeviceData = {areaID:''};
 	$scope.formAreaData = {parentID:''};
 	$scope.areas;
-	
+	$scope.testing = "testing hi";
 	//var socket = io();
 	//socket.on('dbUpdate', function (data) {  
 	//	reloadDB();
@@ -42,12 +42,16 @@ function mainController($scope, $http)
 			{
 				console.log('Error: ' + data);
 			});
-			
+			try {
+				populateMarkers();
+			}
+			catch(err) {}
 		})
 		.error(function(data) {
 			console.log('Error: ' + data);
 		});	
 	}
+	
 	//when loading page get user ID
 	$http.get('/api/users/current').success(function(data) 
 	{
@@ -59,6 +63,11 @@ function mainController($scope, $http)
 		{
 			$scope.devices = data;
 			console.log(data);
+			try {
+				populateMarkers();
+			}
+			catch(err) {}
+			
 		})
 		.error(function(data) 
 		{
@@ -118,9 +127,9 @@ function mainController($scope, $http)
 		$scope.deviceInfoSend = $scope.deviceInfo
         $http.put('/openApi/devices/deviceUpdate/'+$scope.usertest._id+'/'+$scope.deviceInfoSend._id, $scope.deviceInfoSend).success(function(data) 
 		{
-			console.log($scope.deviceInfo._id);
+			//console.log($scope.deviceInfo._id);
 			$scope.devices = data;
-			console.log(data);
+			//console.log(data);
 			
 			//load updated device after updated
 			var id = $scope.deviceInfo._id;
@@ -215,9 +224,8 @@ function mainController($scope, $http)
 			angular.element('.InfoFormTip').css('display', 'none');
 			angular.element('.areaInfoForm').css('display', 'none');
 			angular.element('.deviceInfoForm').css('display', 'block');
-
-			//device.document.getElementsByClassName("deviceInfoForm").style.visibility = "visible";
     };
+	
 	
 	//Get area info on click
 	$scope.getAreaInfo = function(area) 
@@ -227,6 +235,18 @@ function mainController($scope, $http)
 			angular.element('.InfoFormTip').css('display', 'none');
 			angular.element('.deviceInfoForm').css('display', 'none');
 			angular.element('.areaInfoForm').css('display', 'block');
+    };
+	
+	$scope.locateDevice = function(device) 
+	{
+			//console.log(device._id);
+			zoomToDevice(device._id);
+    };
+	
+	$scope.locateArea = function(area) 
+	{
+			//console.log(area._id);
+			zoomToArea(area._id);
     };
 	
 	$scope.filterAreaExists = function(object) 
@@ -270,5 +290,6 @@ function mainController($scope, $http)
 		}
 		return (false);
 	};
+
 };
 
