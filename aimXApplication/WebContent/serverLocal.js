@@ -53,9 +53,9 @@ io.on('connection', function(socket){
 });
 
 //get update from db
-setInterval(function() {  
+/*setInterval(function() {  
   io.sockets.emit('dbUpdate', { });
-}, 3000); //1000 = 1 second
+}, 3000); //1000 = 1 second */
 
 // start server
 server.listen(3000, function () {

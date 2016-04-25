@@ -76,6 +76,7 @@
 			<div class="well">
 				<button class="btn btn-primary" data-toggle="modal" data-target="#addDevice"> Add Device <span class="glyphicon glyphicon-hdd"></span> </button>
 				<button class="btn btn-primary" data-toggle="modal" data-target="#addArea"> Add Area <span class="glyphicon glyphicon-folder-open"></span> </button>
+				<button class="btn btn-success" data-toggle="tooltip" title="Refresh Device List" ng-click="reloadDB()"><span class="glyphicon glyphicon-refresh"></span></button>
 			</div>
 		    <div class="devicePanel">
 				<div>
@@ -94,7 +95,9 @@
 		<!-- Device Information -->
 		<div class="rightPanel col-sm-8 page content">
 	    	<div id="target" class="well">
-			    
+				<div class="InfoFormTip" style="display:block;">
+					<b>Click an Item from the list to view or edit info on it</b>
+				</div>
 				<!-- Device Form -->
 				<div class="deviceInfoForm" style="display:none;">
 					<!--<div ng-repeat="device in devices | filter:{deviceType:'minecraft'}:true">-->
