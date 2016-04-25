@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>About</title>
+	
+	<!-- Bootstrap core CSS -->
+    <link href="/bootstrapCSS" rel="stylesheet">
+    <link href="/bootstrapCSSIE10" rel="stylesheet">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<script src="/bootstrapJS"></script>
+    <script src="/bootstrapJSIE10"></script>
+
+	<!-- stylesheets (last so they take priority) -->
+	<link rel="stylesheet" type="text/css" href="../style.css" />
+	<link rel="stylesheet" type="text/css" href="about-style.css" />
+	
+</head>
+
+<body  ng-app="app">
+    <h1> About </h1>
+
+
+    <div class="info">
+	    <pre id="tab">
+		    <p>AimX is about creating a scalable automated interface for homes/buildings everywhere With this technology anyone would be able to monitor and customize their home to their preferences. 
+		    With the Internet of Things and home appliances </p>
+
+			<p>Smart monitoring would allow for the homes power, water, and A/C data to all be preform optimally</p>
+
+			<p>Automation is as simple as configuring options such as: turning on the exterior lights when the sun goes down or turning off irrigation when it starts to rain.</p>
+		</pre>
+	</div>
+
+
+    
+	<div class="text-center" >
+		<button class="btn btn-primary"onclick="goBack()">Go Back</button>
+	</div>
+
+	<script>
+		function goBack() {
+		    window.history.back();
+		}
+	</script>
+
+	<footer class="footer">
+		<p>Team Cisco 2016 ASU Senior Capstone Project</p>	
+	</footer>
+	
+</body>
+</html>

@@ -17,7 +17,7 @@
 	
   	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-    <script src="devices.js"></script>
+    <!--<script src="devices.js"></script>-->
 	
 	
 		<!-- external scripts -->
@@ -31,7 +31,8 @@
 	<script src="../app-js/devices.db.js"></script>
     <script src="index.controller.js"></script>
 	
-
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 	
 	
 </head>
@@ -40,15 +41,16 @@
 	<nav ng-controller="Nav.IndexController as loginInfo" class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				
+				<a class="navbar-brand" style="color:#ffffff" >aimX</a>
+				<button aria-expanded="false" role="navigation" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
-					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">aimX</a>
 			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav">
+			<div class="collapse navbar-collapse"  id="myNavbar">
+				<ul role="navigation" class="nav navbar-nav">
 					<li><a href="../home">Home</a></li>
 					<li><a href="../floorPlan">Floor Plan</a></li>
 					<li class="active"><a href="../devices">Devices</a></li>
@@ -67,141 +69,158 @@
 	</div>
 
 	<div class="container">
+		
 		<div class="leftPanel col-sm-4 container page-content">
+		<!-- Device tree -->
 			<h3>Number of Devices: <span class="label label-primary">{{ devices.length }}</span></h3>
+			<div class="well">
+				<button class="btn btn-primary" data-toggle="modal" data-target="#addDevice"> Add Device <span class="glyphicon glyphicon-hdd"></span> </button>
+				<button class="btn btn-primary" data-toggle="modal" data-target="#addArea"> Add Area <span class="glyphicon glyphicon-folder-open"></span> </button>
+				<button class="btn btn-success" data-toggle="tooltip" title="Refresh Device List" ng-click="reloadDB()"><span class="glyphicon glyphicon-refresh"></span></button>
+			</div>
 		    <div class="devicePanel">
-				<!--<div id="tree" draggable="true" ondragstart="drag(event)"></div>-->
-				<div class="easy-tree" ><!--class="easy-tree"-->
-				 
-					<!--<ul>
-						<li ng-repeat="area in areas | filter:{parentID:''}:true" ng-include="'tree_recursion.html'"></li>
-						<li ng-repeat="device in devices | filter:{areaID:''}:true">{{device.name}}</li>
-					</ul>-->
-				 
-				 
-				 
-				 
-				 
-				 
-				 
+				<div>
 					<ul>
-						<li ng-repeat="area in areas">{{area.name}}
-							<ul>
-								<li ng-repeat="device in devices | filter:{areaID:area._id}:true">{{device.name}}</li>
-							</ul>
-							
-						</li>
-						<li ng-repeat="device in devices | filter:{areaID:''}:true">{{device.name}}</li>
+						<!-- gets root areas and populates them -->
+						<li ng-repeat="area in areas | filter:filterParentExists | orderBy: 'name'" ng-include="'tree_recursion.html'"></li>
+						<!-- gets devices not in a existing folder -->
+						<li id={{device._id}} draggable="true" ondragstart="drag(event)" ng-click="getDeviceInfo(device)" ng-repeat="device in devices | filter:filterAreaExists | orderBy: 'name'"><span class="glyphicon glyphicon-hdd"></span> {{device.name}}</li>
 					</ul>
-				 
-				 
-				 
-				 
-				 
-				 
-					<!-- ///////////////////// -->
-					<!--<ul>
-						<li>Living Room
-							<ul>
-								<li>Light 1</li>
-								<li>Light 2</li>
-								<li>Entertainments
-									<ul>
-										<li>Television</li>
-										<li>Radio</li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-
-						<li>Kitchen
-							<ul>
-								<li>Light 1</li>
-								<li>Light 2</li>
-								<li>Appliances
-									<ul>
-										<li>Stove</li>
-										<li>Dish Washer</li>
-										<li>Fridge</li>
-									</ul>
-								</li>
-							</ul>
-						</li>
+				 	<!--<ul>--------------All Devices --------------
+						<li id={{device._id}} draggable="true" ondragstart="drag(event)" ng-repeat="device in devices" ng-click="getDeviceInfo(device)"><div ><span class="glyphicon glyphicon-file"></span>{{device.name}}</div></li>
 					</ul>-->
 				</div>
 			</div>
 		</div>
-
-		<div ng-controller="Nav.IndexController as loginInfo" class="rightPanel col-sm-8 page content">
-	    	<div id="target" class="well" ondrop="drop(event)" ondragover="allowDrop(event)">
-			    
-				
-				<!-- ///////////////////////testing////////////////////////// -->
-				
-				<!-- LOOP OVER THE DEVICES IN $scope.devices -->
-                <!--<div class="checkbox" ng-repeat="area in areas">
-                    <label>
-                        <input type="checkbox" ng-click="deleteArea(area._id)"> Area: {{area.name}} {{area._id}}
-								<div style="color:#0000ff;background-color: lightblue;" class="checkbox" ng-repeat="device in devices | filter:{areaID:area._id}:true">
-									<label>
-										<input type="checkbox" ng-click="deleteDevice(device._id)"> Device: {{device.name}}
-								
-									</label>
-								</div>
-                    </label>
-                </div>
-				<div style="color:#0000ff;background-color: lightblue;" class="checkbox" ng-repeat="device in devices">
-					<label>
-						<input type="checkbox" ng-click="deleteDevice(device._id)"> Device: {{device.name}}
-				
-					</label>
-				</div>-->
-				
-				<!-- CREATE NEW DEVICE -->
-				<div class="text-center">
+		<!-- Device Information -->
+		<div class="rightPanel col-sm-8 page content">
+	    	<div id="target" class="well">
+				<div class="InfoFormTip" style="display:block;">
+					<b>Click an Item from the list to view or edit info on it</b>
+				</div>
+				<!-- Device Form -->
+				<div class="deviceInfoForm" style="display:none;">
+					<!--<div ng-repeat="device in devices | filter:{deviceType:'minecraft'}:true">-->
+					<h2><span class="glyphicon glyphicon-hdd"></span> <input type="text" ng-model="deviceInfo.name"></h2>
+					<div><label>_id: </label>  {{deviceInfo._id}}</div>
+					<div><label>Type: </label>  {{deviceInfo.deviceType}}</div>
 					<form>
-						<div class="form-group">
-
-							<input type="text" class="form-control input-lg text-center" placeholder="New Device Name" ng-model="formDeviceData.name">
-							<!--<input type="text" class="form-control input-lg text-center" placeholder="New Device Area _id" ng-model="formDeviceData.areaID">-->
-							<select name="area id's" ng-model="formDeviceData.areaID">
-								<option value="">Select an Area</option>
+							<label>Area: </label> 
+							<select name="area id's" ng-model="deviceInfo.areaID">
+								<option value="">No Area</option>
 								<option ng-repeat="area in areas" value="{{area._id}} " >{{area.name}}</option>
 							</select>
-						</div>
-
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="createDevice()">Add Device</button>
-					</form>
-				</div>
-				
-				<!-- CREATE NEW AREA -->
-				<div class="text-center">
-					<form>
-						<div class="form-group">
-
-							<input type="text" class="form-control input-lg text-center" placeholder="New Area Name" ng-model="formAreaData.name">
+							 
+							<div>
+							<label>state: </label>
+								<input type="number" ng-model="deviceInfo.state">
+							</div>
 							
-							<!--<select name="area id's" ng-model="formAreaData.parentID">
-								<option value="">Select an Area</option>
-								<option ng-repeat="area in areas" value="{{area._id}} " >{{area.name}}</option>
-							</select>-->
-
-						</div>
-						
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="createArea()">Add Area</button>
+							
+						<!--<p>---Attributes in Json---</p>
+						<div ng-repeat="(attribute,value) in deviceInfo">
+							{{attribute}}: 
+							<input type="text" ng-model="deviceInfo[attribute]">
+						</div>-->
+						<button class="btn btn-primary" ng-click="updateDevice(deviceInfo._id)">Update</button>
+						<button class="btn btn-danger" ng-click="deleteDevice(deviceInfo._id)">Delete</button>
 					</form>
+					<br>
 				</div>
-				<!-- ///////////////////////testing////////////////////////// -->
 				
-				
+				<!-- Area Form -->
+				<div class="areaInfoForm" style="display:none">
+					<!--<div ng-repeat="device in devices | filter:{deviceType:'minecraft'}:true">-->
+					<h2><span style="color:#337AB7" class="glyphicon glyphicon-folder-open"></span> <input type="text" ng-model="areaInfo.name"></h2>
+					<div><label>_id: </label> {{areaInfo._id}}</div>
+					<form>
+							<label>Parent Area: </label>
+							<select name="area id's" ng-model="areaInfo.parentID">
+								<option value="">No Area</option>
+								<option ng-repeat="area in areas | filter:{_id:'!' + areaInfo._id}:true" value="{{area._id}} " >{{area.name}}</option>
+							</select>
+						<div>
+							<button class="btn btn-primary" ng-click="updateArea(areaInfo._id)">Update</button>
+							<button class="btn btn-danger" ng-click="deleteArea(areaInfo._id)">Delete</button>
+						</div>
+					</form>
+					<br>
+				</div>
 				
 			</div>
 		</div>
 	</div>
 
 	<footer class="footer">
-		<p>Team Cisco 2016 ASU Senior Capstone Project</p>
+		<p><a href="../about">About</a> | <a href="../contact">Contact</a></p>
+		<p>Team Cisco 2016 ASU Senior Capstone Project</p>	
 	</footer>
+
+	<!-- Modal "Overlay" Add Device-->
+	<div id="addDevice" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+		<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Add Device <span class="glyphicon glyphicon-hdd"></h4>
+				</div>
+				<div class="modal-body">
+					<!-- CREATE NEW DEVICE -->
+					<div class="text-center">
+						<form>
+							<div class="form-group">
+
+								<input type="text" class="form-control input-lg text-center" placeholder="New Device Name" ng-model="formDeviceData.name">
+								<!--<input type="text" class="form-control input-lg text-center" placeholder="New Device Area _id" ng-model="formDeviceData.areaID">-->
+								<select name="area id's" ng-model="formDeviceData.areaID">
+									<option value="">Select an Area</option>
+									<option ng-repeat="area in areas" value="{{area._id}} " >{{area.name}}</option>
+								</select>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary" ng-click="createDevice()">Add Device</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Modal "Overlay" Add Area-->
+	<div id="addArea" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+		<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Add Area <span class="glyphicon glyphicon-folder-open"></h4>
+				</div>
+				<div class="modal-body">
+					<!-- CREATE NEW AREA -->
+					<div class="text-center">
+						<form>
+							<div class="form-group">
+								<input type="text" class="form-control input-lg text-center" placeholder="New Area Name" ng-model="formAreaData.name">
+								
+								<select name="area id's" ng-model="formAreaData.parentID">
+									<option value="">Select an Area</option>
+									<option ng-repeat="area in areas" value="{{area._id}} " >{{area.name}}</option>
+								</select>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary" ng-click="createArea()">Add Area</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 	<!-- external scripts 
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
@@ -212,20 +231,39 @@
     <script src="../app-services/user.service.js"></script>
     <script src="../app-services/flash.service.js"></script>
     <script src="index.controller.js"></script>
-	<script src="dbDevices.js"></script>-->
+	<script src="dbDevices.js"></script>
     <script src="afterLoad.js"></script>
-	<script src="easyTree.js"></script>
+	<script src="easyTree.js"></script>-->
 
 	
 	<script type="text/ng-template"  id="tree_recursion.html">
-		{{area.name}}
-		<!--<button ng-click="add(data)">Add node</button>
-		<button ng-click="delete(data)" ng-show="data.nodes.length > 0">Delete nodes</button>-->
-		<ul>
-			<li ng-repeat="device in devices | filter:{areaID:area._id}:true">{{device.name}}</li>
-			<li ng-repeat="area in areas | filter:{parentID:area._id}:true" ng-include="'tree_recursion.html'"></li>
+		<a class="area" data-toggle="collapse" data-target="#{{area._id}}" data-parent="#accordion"><span class="glyphicon glyphicon-folder-open"></span></a>
+		<a style="min-width:100px;height:20px"class="areaName" ng-click="getAreaInfo(area)"><span style="display:inline-block;min-width:20px;min-height:16px;"> {{area.name}} </span></a>
+		<!--<button class="btn btn-danger btn-sm" ng-click="deleteArea(area._id)">X</button>-->
+		<!--<button ng-click="delete(data)" ng-show="data.nodes.length > 0">Delete nodes</button>-->
+		<ul class="collape in" id={{area._id}} >
+			<li id={{device._id}} draggable="true" ondragstart="drag(event)" ng-click="getDeviceInfo(device)" ng-repeat="device in devices | filter:{areaID:area._id}:true | orderBy: 'name'"><span class="glyphicon glyphicon-hdd"></span> {{device.name}}</li>
+			<li ng-repeat="area in areas | filter:{parentID:area._id}:true | orderBy: 'name'" ng-include="'tree_recursion.html'"></li>
 		</ul>
 	</script>
+	
+	<script>
+	
+	function allowDrop(ev) {
+		ev.preventDefault();
+	}
+
+	function drag(ev) {
+		ev.dataTransfer.setData("text", ev.target.id);
+	}
+
+	function drop(ev) {
+		ev.preventDefault();
+		var data = ev.dataTransfer.getData("text");
+		ev.target.appendChild(document.getElementById(data));
+	}
+	</script>
+	
 	
 </body>
 </html>

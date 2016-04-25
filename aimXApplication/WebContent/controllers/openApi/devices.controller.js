@@ -7,12 +7,17 @@ var Device = mongoose.model('device', {
         name : String,
 		userID : String,
 		areaID : String,
+		state : Number,
+		floorPlanX: Number,
+		floorPlanY: Number,
+		deviceImage: [String],
 });
 
 
 router.post('/device/:userID', postDevice);
 router.get('/device/:userID', getDevice);
 router.delete('/device/:userID/:_id', deleteDevice);
+router.put('/deviceUpdate/:userID/:_id', updateDevice);
 
 module.exports = router;
 
@@ -71,3 +76,23 @@ function deleteDevice(req, res)
 		});
 	});
 };
+
+//update device and send back data
+function updateDevice(req, res)
+{
+	
+	Device.findOneAndUpdate({_id : req.params._id}, req.body, function(err, devices) 
+	{
+		console.log(req.body);
+		if (err) 
+			res.send(err);
+		// get and return all the devices after you updated another
+		Device.find({userID : req.params.userID}, function(err, devices) 
+		{
+			if (err)
+				res.send(err)
+			res.json(devices);
+		});
+	});
+}
+
