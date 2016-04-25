@@ -9,12 +9,12 @@ function mainController($scope, $http)
 	$scope.formAreaData = {parentID:''};
 	$scope.areas;
 	
-	var socket = io();
-	socket.on('dbUpdate', function (data) {  
-		reloadDB();
-	});
+	//var socket = io();
+	//socket.on('dbUpdate', function (data) {  
+	//	reloadDB();
+	//});
 
-	function reloadDB()
+	$scope.reloadDB = function() 
 	{
 		$http.get('/api/users/current').success(function(data) 
 		{
@@ -47,7 +47,6 @@ function mainController($scope, $http)
 		.error(function(data) {
 			console.log('Error: ' + data);
 		});	
-		
 	}
 	//when loading page get user ID
 	$http.get('/api/users/current').success(function(data) 
@@ -106,6 +105,7 @@ function mainController($scope, $http)
 			console.log(data);
 			$scope.deviceInfo = null;
 			angular.element('.deviceInfoForm').css('display', 'none');
+			angular.element('.InfoFormTip').css('display', 'block');
 		}).error(function(data) 
 		{
 			console.log('Error: ' + data);
@@ -126,11 +126,13 @@ function mainController($scope, $http)
 			var id = $scope.deviceInfo._id;
 			$scope.deviceInfo._id = null;
 			angular.element('.deviceInfoForm').css('display', 'none');
+			angular.element('.InfoFormTip').css('display', 'block');
 			angular.forEach($scope.devices, function(device) 
 			{
 				if(device._id == id)
 				{
 					$scope.deviceInfo = angular.copy(device);
+					angular.element('.InfoFormTip').css('display', 'none');
 					angular.element('.deviceInfoForm').css('display', 'block');
 				}
 			});
@@ -167,6 +169,7 @@ function mainController($scope, $http)
 			console.log(data);
 			$scope.areaInfo = null;
 			angular.element('.areaInfoForm').css('display', 'none');
+			angular.element('.InfoFormTip').css('display', 'block');
 		}).error(function(data) 
 		{
 			console.log('Error: ' + data);
@@ -187,11 +190,13 @@ function mainController($scope, $http)
 			var id = $scope.areaInfo._id;
 			$scope.areaInfo._id = null;
 			angular.element('.areaInfoForm').css('display', 'none');
+			angular.element('.InfoFormTip').css('display', 'block');
 			angular.forEach($scope.areas, function(area) 
 			{
 				if(area._id == id)
 				{
 					$scope.areaInfo = angular.copy(area);
+					angular.element('.InfoFormTip').css('display', 'none');
 					angular.element('.areaInfoForm').css('display', 'block');
 				}
 			});
@@ -207,6 +212,7 @@ function mainController($scope, $http)
 	{
 			console.log(device._id);
 			$scope.deviceInfo = angular.copy(device);
+			angular.element('.InfoFormTip').css('display', 'none');
 			angular.element('.areaInfoForm').css('display', 'none');
 			angular.element('.deviceInfoForm').css('display', 'block');
 
@@ -218,6 +224,7 @@ function mainController($scope, $http)
 	{
 			console.log(area._id);
 			$scope.areaInfo = angular.copy(area);
+			angular.element('.InfoFormTip').css('display', 'none');
 			angular.element('.deviceInfoForm').css('display', 'none');
 			angular.element('.areaInfoForm').css('display', 'block');
     };
