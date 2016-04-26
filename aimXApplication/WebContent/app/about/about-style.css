@@ -2,8 +2,40 @@ h1 {
 	text-align: center;
 }
 
-#tab {
-	text-align: center;
+.button {
+	padding: 10px;
+}
+
+#texts {
+	margin: auto;
+	width: 60%;
 	font-size: 18px;
 	font-weight: bold;
+	border-style: solid;
+	border-width: 5px; 
+	border-radius: 25px;
+	width: 1000px;
+	padding: 10px;
+}
+
+#first {
+	padding: 10px;
+	border-style: solid;
+	border-top-width: 0px;
+	border-left-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 1px;
+}
+
+#second {
+	padding: 10px;
+	border-style: solid;
+	border-top-width: 0px;
+	border-left-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 1px;
+}
+
+#third {
+	padding: 10px;
 }
