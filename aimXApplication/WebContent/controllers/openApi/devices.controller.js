@@ -10,7 +10,7 @@ var Device = mongoose.model('device', {
 		state : Number,
 		floorPlanX: Number,
 		floorPlanY: Number,
-		deviceImage: [String],
+		deviceImage: String,
 });
 
 

@@ -12,48 +12,43 @@ map.on('load', function(event)
 }
 );
 
+L.control.fullscreen().addTo(map);
+
 var bounds = [[0,0], [1000,1000]];
 var image = L.imageOverlay('test_map_full.png', bounds).addTo(map);
 var markerArray = [];
 
 map.fitBounds(bounds);
 
-var iconDefault = L.icon({
-	iconUrl: 'icons/marker2.png',
-    shadowUrl: 'icons/iconShadow.png',
-    iconSize:     [20, 35], // size of the icon
-    shadowSize:   [20, 35], // size of the shadow
-    iconAnchor:   [10, 34], // point of the icon which will correspond to marker's location
-    shadowAnchor: [10, 34],  // the same for the shadow
-    popupAnchor:  [0, -35] // point from which the popup should open relative to the iconAnchor
-
+var iconDevice = L.icon({
+	iconUrl: 'icons/device.png',
+    shadowUrl: 'icons/shadow.png',
+    iconSize:     [30, 30], // size of the icon  //w h
+    shadowSize:   [30, 30], // size of the shadow
+    iconAnchor:   [15, 25], // point of the icon which will correspond to marker's location
+    shadowAnchor: [15, 15],  // the same for the shadow
+    popupAnchor:  [0, -25] // point from which the popup should open relative to the iconAnchor
 });
 
-var iconLightOff = L.icon({
-    iconUrl: 'icons/lightBulb_off.png',
-    shadowUrl: 'icons/iconShadow.png',
-    iconSize:     [20, 35], // size of the icon
-    shadowSize:   [20, 35], // size of the shadow
-    iconAnchor:   [10, 34], // point of the icon which will correspond to marker's location
-    shadowAnchor: [10, 34],  // the same for the shadow
-    popupAnchor:  [0, -35] // point from which the popup should open relative to the iconAnchor
-
-});
-
-var iconLightOn = L.icon({
-    iconUrl: 'icons/lightBulb_on.png',
-    shadowUrl: 'icons/iconShadow.png',
-    iconSize:     [20, 35], // size of the icon
-    shadowSize:   [20, 35], // size of the shadow
-    iconAnchor:   [10, 34], // point of the icon which will correspond to marker's location
-    shadowAnchor: [10, 34],  // the same for the shadow
+var iconToggleOn = L.icon({
+	iconUrl: 'icons/toggle_on.png',
+    shadowUrl: 'icons/shadow.png',
+    iconSize:     [40, 40], // size of the icon  //w h
+    shadowSize:   [30, 30], // size of the shadow
+    iconAnchor:   [22, 30], // point of the icon which will correspond to marker's location
+    shadowAnchor: [15, 15],  // the same for the shadow
     popupAnchor:  [0, -35] // point from which the popup should open relative to the iconAnchor
 });
 
-/*var marker = L.marker([-20, -20],{draggable: true,icon: iconLightOff,title: "Light"},{icon: iconLightOff}).addTo(map).bindPopup("<b>Lights Off</b><br>The lights are off right now");
-var marker1 = L.marker([54.5, -0], {draggable: true}).addTo(map).bindPopup("<b>Hi</b><br>I am a popup.");
-var marker2 = L.marker([155.5, -0], {draggable: true}).addTo(map).bindPopup("<b>Yo</b><br>I am a popup.");
-var marker3 = L.marker([-256.5, -0], {draggable: true}).addTo(map).bindPopup("<b>README</b><br>I am a popup.");*/
+var iconToggleOff = L.icon({
+	iconUrl: 'icons/toggle_off.png',
+    shadowUrl: 'icons/shadow.png',
+    iconSize:     [40, 40], // size of the icon  //w h
+    shadowSize:   [30, 30], // size of the shadow
+    iconAnchor:   [22, 30], // point of the icon which will correspond to marker's location
+    shadowAnchor: [15, 15],  // the same for the shadow
+    popupAnchor:  [0, -35] // point from which the popup should open relative to the iconAnchor
+});
 
 var popup = L.popup();
 
@@ -138,9 +133,8 @@ function addMarker(x, y, data)
 {
 	var scope = angular.element(document.querySelector('[id="map"]')).scope();
 	
-	//var markerPosition = map.containerPointToLatLng([x, y]);
 	var markerPosition = L.latLng(x,y);
-	var icon2 = iconDefault;
+	var setIcon = iconDevice;
 	
 	var device;
 	var foundInDB = false;
@@ -167,8 +161,20 @@ function addMarker(x, y, data)
 		
 		if(!foundInMap)
 		{
+			if(device.deviceType == "minecraft")
+			{
+				
+				if(device.state == 0)
+				{
+					setIcon = iconToggleOff; //off
+				}
+				else
+				{
+					setIcon = iconToggleOn; //on
+				}
+			}
 			var popupText = "<b style='font-size:25px;'>"+device.name+"</b><div style='text-align:center;'><button type='button' class='buttonDelete btn btn-danger btn-xs'>Delete Marker</button></div>";
-			marker = L.marker(markerPosition, {icon: icon2,draggable:"true"}).addTo(map).bindPopup(popupText);
+			marker = L.marker(markerPosition, {icon: setIcon,draggable:"true"}).addTo(map).bindPopup(popupText);
 			marker.on("popupopen", onPopupOpen);
 			marker.on("dragend", onDragEnd);
 			marker.deviceID = device._id;
