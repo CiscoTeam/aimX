@@ -43,6 +43,21 @@ app.get('/', function (req, res) {
 });
 
 
+
+/*var router = express.Router(), multer = require('multer');
+
+var uploading = multer({dest: __dirname + '../public/uploads/',});
+
+router.post('/upload', uploading, function(req, res) 
+{
+	
+});
+
+module.exports = router;
+*/
+
+
+
 // start server
 var server = app.listen(3000, function () {
     console.log('Server listening at http://' + server.address().address + ':' + server.address().port);

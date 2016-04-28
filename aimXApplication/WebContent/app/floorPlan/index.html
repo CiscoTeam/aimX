@@ -39,7 +39,6 @@
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
 
-
 	
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
@@ -48,6 +47,7 @@
 </head>
 
 <body ng-controller="main.IndexController as mainController">
+
 	<nav ng-controller="Nav.IndexController as loginInfo" class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -87,10 +87,20 @@
 				
 				<div id="map" ondrop="dropOnMap(event)" ondragover="allowDrop(event)"></div>
 				
-				<button type="button" class="btn btn-primary">Upload Floor Plan Image</button>
+				<!--<button type="file" name="pic" class="btn btn-primary">Upload Floor Plan Image</button>-->
+				<label class="btn btn-primary" for="my-file-selector">
+					<input id="my-file-selector" type="file" accept="image/*" style="display:none;">
+					Upload Floor Plan Image...
+				</label>
 				
-				<img id="drag01" draggable="true" class="drag dragTest" ondragstart="drag(event)" type="tree" src="icons/lightBulb_off.png" alt="TREE: green" />
-				<img id="drag02" draggable="true" class="drag dragTest" ondragstart="drag(event)" type="tree2" src="icons/lightBulb_on.png" alt="TREE: green2" />
+				<form action="/pictures/upload" method="POST" enctype="multipart/form-data">
+				  Select an image to upload:
+				  <input type="file" name="image"> 
+				  <input type="submit" value="Upload Image">
+				</form>
+							
+				<!--<img id="drag01" draggable="true" class="drag dragTest" ondragstart="drag(event)" type="tree" src="icons/lightBulb_off.png" alt="TREE: green" />
+				<img id="drag02" draggable="true" class="drag dragTest" ondragstart="drag(event)" type="tree2" src="icons/lightBulb_on.png" alt="TREE: green2" />-->
 				
 
 				<!--<div id="drag" draggable="true" ondragstart="drag(event)">drag me!</div>
@@ -208,7 +218,12 @@
 	</script>
 	
 	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+	<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+	<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
+	
 	<script src="leaflet-js.js"></script><!---->
+	
+
 	
 	<!-- external scripts -->
 
