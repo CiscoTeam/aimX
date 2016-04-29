@@ -1,14 +1,27 @@
 ﻿require('rootpath')();
 var express = require('express');
+var multer = require('multer');
+
 var app = express();
 var mongoose = require("mongoose");
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var expressJwt = require('express-jwt');
 var config = require('config.json');
-
+var fs = require('fs');
 mongoose.connect(config.connectionMongoose);
 
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) 
+	{
+	cb(null, file.fieldname + '.png')
+  }
+})
+
+var upload = multer({storage: storage });
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
@@ -29,6 +42,7 @@ app.use('/openApi/areas', require('./controllers/openApi/areas.controller'));
 app.use('/app/home', require('./controllers/authenticate.controller'));
 
 app.use(express.static(__dirname + '/frameworks'));
+app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use('/fonts/', express.static(__dirname + '/frameworks/bootstrap-master/fonts'));
 
 app.get('/bootstrapCSS',function(req,res){res.sendFile(__dirname + '/frameworks/bootstrap-master/dist/css/bootstrap.min.css');});
@@ -40,6 +54,18 @@ app.get('/styleCSS',function(req,res){res.sendFile(__dirname + '/app/style.css')
 // make '/app' default route
 app.get('/', function (req, res) {
     return res.redirect('/app/home');
+});
+
+
+app.post('/upload', upload.single('photho'), function(req, res)
+{
+	fs.rename('uploads/photho.png', 'uploads/'+req.body.userID+'.png', function(err) 
+	{
+		if ( err ) console.log('ERROR: ' + err);
+	});
+    console.log(req.body) // form fields
+    console.log(req.file) // form files
+    res.status(204).end()
 });
 
 
