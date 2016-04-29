@@ -15,6 +15,7 @@ map.on('load', function(event)
 L.control.fullscreen().addTo(map);
 
 var bounds = [[0,0], [1000,1000]];
+
 var image = L.imageOverlay('test_map_full.png', bounds).addTo(map);
 var markerArray = [];
 
@@ -56,6 +57,8 @@ function populateMarkers()
 {
 	var scope = angular.element(document.querySelector('[id="map"]')).scope();
 	
+	map.removeLayer(image);
+	image = L.imageOverlay('../../uploads/'+scope.usertest._id+'.png', bounds).addTo(map);
 	angular.forEach(scope.devices, function(aDevice) 
 	{
 		if(aDevice.floorPlanX != null)

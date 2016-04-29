@@ -9,6 +9,7 @@ function mainController($scope, $http)
 	$scope.formAreaData = {parentID:''};
 	$scope.areas;
 	$scope.testing = "testing hi";
+	$scope.formImage;
 	//var socket = io();
 	//socket.on('dbUpdate', function (data) {  
 	//	reloadDB();
@@ -290,6 +291,17 @@ function mainController($scope, $http)
 		}
 		return (false);
 	};
+	
+	$scope.formImageSubmit = function() {
+		console.log($scope.formImage);//.userID = $scope.usertest._id;
+        $http.post('/upload',$scope.formImage)
+            .success(function(data) {
+				//update photo
+                console.log(data);
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+    };
 
 };
-

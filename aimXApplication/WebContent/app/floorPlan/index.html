@@ -87,17 +87,19 @@
 				
 				<div id="map" ondrop="dropOnMap(event)" ondragover="allowDrop(event)"></div>
 				
-				<!--<button type="file" name="pic" class="btn btn-primary">Upload Floor Plan Image</button>-->
+				<!--<button type="file" name="pic" class="btn btn-primary">Upload Floor Plan Image</button>
 				<label class="btn btn-primary" for="my-file-selector">
 					<input id="my-file-selector" type="file" accept="image/*" style="display:none;">
 					Upload Floor Plan Image...
-				</label>
+				</label>-->
 				
-				<form action="/pictures/upload" method="POST" enctype="multipart/form-data">
-				  Select an image to upload:
-				  <input type="file" name="image"> 
+				<form action="/upload" method="POST" enctype="multipart/form-data">
+				  Upload a Floor Plan .png Image:
+				  <input type="file" name="photho" id="asdfadfaf"> 
 				  <input type="submit" value="Upload Image">
+				  <input type="text" style="visibility:hidden;" value="{{usertest._id}}" name="userID">
 				</form>
+				
 							
 				<!--<img id="drag01" draggable="true" class="drag dragTest" ondragstart="drag(event)" type="tree" src="icons/lightBulb_off.png" alt="TREE: green" />
 				<img id="drag02" draggable="true" class="drag dragTest" ondragstart="drag(event)" type="tree2" src="icons/lightBulb_on.png" alt="TREE: green2" />-->
