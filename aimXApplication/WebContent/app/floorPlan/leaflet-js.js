@@ -57,8 +57,23 @@ function populateMarkers()
 {
 	var scope = angular.element(document.querySelector('[id="map"]')).scope();
 	
-	map.removeLayer(image);
-	image = L.imageOverlay('../../uploads/'+scope.usertest._id+'.png', bounds).addTo(map);
+	$.ajax({
+    url:'../../uploads/'+scope.usertest._id+'.png',
+    type:'HEAD',
+    error: function()
+    {
+        //file not exists
+    },
+    success: function()
+    {
+        //file exists
+		map.removeLayer(image);
+		image = L.imageOverlay('../../uploads/'+scope.usertest._id+'.png', bounds).addTo(map);
+    }
+});
+	
+	
+	
 	angular.forEach(scope.devices, function(aDevice) 
 	{
 		if(aDevice.floorPlanX != null)
